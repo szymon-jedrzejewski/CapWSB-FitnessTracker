@@ -21,18 +21,25 @@ class UserController {
     private final UserMapper userMapper;
     private final UserRepository userRepository;
 
-    @GetMapping
-    public ResponseEntity<List<UserDto>> getAllUsers(@RequestParam(required = false) Integer age) {
-        List<User> users;
 
-        if (age != null) {
-             LocalDate cutoffDate = LocalDate.now().minusYears(age);
-            users = userService.findAllUsers().stream()
-                    .filter(user -> user.getBirthdate().isBefore(cutoffDate))
-                    .toList();
-        } else {
-            users = userService.findAllUsers();
-        }
+    @GetMapping
+    public ResponseEntity<List<UserDto>> getAllUsersByAge() {
+        List<User> users = userService.findAllUsers();
+
+        List<UserDto> userDtos = users.stream()
+                .map(userMapper::toDto)
+                .toList();
+
+        return ResponseEntity.ok(userDtos);
+    }
+
+    @GetMapping("/age")
+    public ResponseEntity<List<UserDto>> getAllUsersByAge(@RequestParam Integer age) {
+        LocalDate cutoffDate = LocalDate.now().minusYears(age);
+
+        List<User> users = userService.findAllUsers().stream()
+                            .filter(user -> user.getBirthdate().isBefore(cutoffDate))
+                            .toList();
 
         List<UserDto> userDtos = users.stream()
                 .map(userMapper::toDto)
@@ -53,7 +60,7 @@ class UserController {
 
     @GetMapping("/basic")
     public List<UserBasicInfoDto> getAllBasicInfo() {
-        return userService.findAllBasicInfo();
+        return userService.findAllUsersBasicInfo();
     }
 
     @GetMapping("/{id}")
@@ -61,7 +68,7 @@ class UserController {
         return userService.findUserById(id);
     }
 
-    @DeleteMapping("/delete/id")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         try {
             userService.deleteUserById(id);
@@ -72,7 +79,7 @@ class UserController {
         }
     }
 
-    @PostMapping("/create/{user}")
+    @PostMapping("/create")
     public User createUser(@RequestBody User user) {
         return userService.createUser(user);
     }
@@ -84,13 +91,9 @@ class UserController {
     }
 
     @GetMapping("/search/email/prefix")
-    public ResponseEntity<List<UserEmailAndID>> getUsersByEmailPrefix(@RequestParam String emailPrefix) {
-        List<User> users = userService.getUserByEmail(emailPrefix);
+    public List<UserEmailAndID> getUsersByEmail(@RequestParam String emailPrefix) {
 
-        List<UserEmailAndID> userDto = users.stream()
-                .map(user -> new UserEmailAndID(user.getId(), user.getEmail()))
-                .toList();
+        return userService.getUserByEmail(emailPrefix);
 
-        return ResponseEntity.ok(userDto);
     }
 }

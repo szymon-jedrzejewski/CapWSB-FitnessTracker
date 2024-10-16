@@ -1,8 +1,11 @@
 package com.capgemini.wsb.fitnesstracker.user.internal;
 
 import com.capgemini.wsb.fitnesstracker.user.api.User;
+import com.capgemini.wsb.fitnesstracker.user.api.UserDto;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.http.ResponseEntity;
 
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.List;
@@ -28,7 +31,7 @@ interface UserRepository extends JpaRepository<User, Long> {
      */
     default List<User> findByEmail(String email) {
         return findAll().stream()
-                .filter(user ->  user.getEmail().toLowerCase().startsWith(email.toLowerCase()))
+                .filter(user ->  user.getEmail().toLowerCase().contains(email.toLowerCase()))
                 .toList();
     }
 
@@ -48,28 +51,30 @@ interface UserRepository extends JpaRepository<User, Long> {
     }
 
     /**
-     * Find user by his ID
-     * @param id User ID
-     * @return {@link Optional} containing found user
-     */
-    default Optional <User> findById(Long id){
-         return findAll().stream()
-                 .filter(user -> Objects.equals(user .getId(), id))
-                 .findFirst();
-    }
-
-    /**
      * Delete user by his ID
      * @param id User ID
      */
     default void  deleteUserById(Long id){
         Optional<User> user = findById(id);
         if(user.isPresent()){
-            deleteById(id);
+            delete(user.get());
         }
         else{
             throw new IllegalArgumentException("User ID: " + id + " not found");
         }
+    }
+
+    default List<UserEmailAndID> getUserByEmail(String email){
+
+        List <User> users = this.findByEmail(email);
+
+        List<UserEmailAndID> userDto;
+
+        userDto = users.stream()
+                .map(user -> new UserEmailAndID(user.getId(), user.getEmail()))
+                .toList();
+
+        return userDto;
     }
 }
 

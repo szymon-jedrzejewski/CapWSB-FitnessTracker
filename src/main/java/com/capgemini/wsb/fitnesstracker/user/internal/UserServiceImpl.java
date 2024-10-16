@@ -5,9 +5,11 @@ import com.capgemini.wsb.fitnesstracker.user.api.UserProvider;
 import com.capgemini.wsb.fitnesstracker.user.api.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import java.util.stream.Collectors;
@@ -34,8 +36,8 @@ class UserServiceImpl implements UserService, UserProvider{
     }
 
     @Override
-    public List<User> getUserByEmail(final String email) {
-        return userRepository.findByEmail(email);
+    public List<UserEmailAndID> getUserByEmail(final String email) {
+        return userRepository.getUserByEmail(email);
     }
 
     @Override
@@ -44,7 +46,7 @@ class UserServiceImpl implements UserService, UserProvider{
     }
 
     @Override
-    public List<UserBasicInfoDto> findAllBasicInfo() {
+    public List<UserBasicInfoDto> findAllUsersBasicInfo() {
         return userRepository.findAll().stream()
                 .map(user -> new UserBasicInfoDto(user.getId(), user.getFirstName() + " " + user.getLastName()))
                 .collect(Collectors.toList());
@@ -52,7 +54,9 @@ class UserServiceImpl implements UserService, UserProvider{
 
     @Override
     public Optional<User> findUserById(final Long userId) {
-        return userRepository.findById(userId);
+        return userRepository.findAll().stream()
+                .filter(user -> Objects.equals(user .getId(), userId))
+                .findFirst();
     }
 
     @Override
