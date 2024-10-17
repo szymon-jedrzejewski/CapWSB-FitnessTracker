@@ -5,15 +5,19 @@ import com.capgemini.wsb.fitnesstracker.user.api.UserProvider;
 import com.capgemini.wsb.fitnesstracker.user.api.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
-class UserServiceImpl implements UserService, UserProvider {
+class UserServiceImpl implements UserService, UserProvider{
 
     private final UserRepository userRepository;
 
@@ -32,8 +36,8 @@ class UserServiceImpl implements UserService, UserProvider {
     }
 
     @Override
-    public Optional<User> getUserByEmail(final String email) {
-        return userRepository.findByEmail(email);
+    public List<UserEmailAndID> getUserByEmail(final String email) {
+        return userRepository.getUserByEmail(email);
     }
 
     @Override
@@ -41,4 +45,32 @@ class UserServiceImpl implements UserService, UserProvider {
         return userRepository.findAll();
     }
 
+    @Override
+    public List<UserBasicInfoDto> findAllUsersBasicInfo() {
+        return userRepository.findAll().stream()
+                .map(user -> new UserBasicInfoDto(user.getId(), user.getFirstName() + " " + user.getLastName()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<User> findUserById(final Long userId) {
+        return userRepository.findAll().stream()
+                .filter(user -> Objects.equals(user .getId(), userId))
+                .findFirst();
+    }
+
+    @Override
+    public void deleteUserById(final Long userId) {
+        userRepository.deleteUserById(userId);
+    }
+
+    public User updateUser(Long id, User userDetails) {
+        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("{User ID not found: " + id));
+        user.setFirstName(userDetails.getFirstName());
+        user.setLastName(userDetails.getLastName());
+        user.setBirthdate(userDetails.getBirthdate());
+        user.setEmail(userDetails.getEmail());
+
+        return userRepository.save(user);
+    }
 }
