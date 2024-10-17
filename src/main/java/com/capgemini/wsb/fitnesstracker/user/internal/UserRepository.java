@@ -1,14 +1,12 @@
 package com.capgemini.wsb.fitnesstracker.user.internal;
 
 import com.capgemini.wsb.fitnesstracker.user.api.User;
-import com.capgemini.wsb.fitnesstracker.user.api.UserDto;
+import com.capgemini.wsb.fitnesstracker.user.api.dto.UserEmailAndIdDto;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.http.ResponseEntity;
 
-import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.List;
 import java.util.stream.Collectors;
 
 interface UserRepository extends JpaRepository<User, Long> {
@@ -64,14 +62,14 @@ interface UserRepository extends JpaRepository<User, Long> {
         }
     }
 
-    default List<UserEmailAndID> getUserByEmail(String email){
+    default List<UserEmailAndIdDto> getUserByEmail(String email){
 
         List <User> users = this.findByEmail(email);
 
-        List<UserEmailAndID> userDto;
+        List<UserEmailAndIdDto> userDto;
 
         userDto = users.stream()
-                .map(user -> new UserEmailAndID(user.getId(), user.getEmail()))
+                .map(user -> new UserEmailAndIdDto(user.getId(), user.getEmail()))
                 .toList();
 
         return userDto;

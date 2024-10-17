@@ -1,6 +1,9 @@
 package com.capgemini.wsb.fitnesstracker.user.internal;
 
 import com.capgemini.wsb.fitnesstracker.user.api.User;
+import com.capgemini.wsb.fitnesstracker.user.api.dto.UserBasicInfoDto;
+import com.capgemini.wsb.fitnesstracker.user.api.dto.UserEmailAndIdDto;
+import com.capgemini.wsb.fitnesstracker.user.api.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -91,7 +94,7 @@ class UserController {
     }
 
     @GetMapping("/search/email/prefix")
-    public List<UserEmailAndID> getUsersByEmail(@RequestParam String emailPrefix) {
+    public List<UserEmailAndIdDto> getUsersByEmail(@RequestParam String emailPrefix) {
 
         return userService.getUserByEmail(emailPrefix);
 

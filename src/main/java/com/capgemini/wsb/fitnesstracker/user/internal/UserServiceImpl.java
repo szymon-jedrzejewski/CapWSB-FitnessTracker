@@ -3,15 +3,15 @@ package com.capgemini.wsb.fitnesstracker.user.internal;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.capgemini.wsb.fitnesstracker.user.api.UserProvider;
 import com.capgemini.wsb.fitnesstracker.user.api.UserService;
+import com.capgemini.wsb.fitnesstracker.user.api.dto.UserBasicInfoDto;
+import com.capgemini.wsb.fitnesstracker.user.api.dto.UserEmailAndIdDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-
 import java.util.stream.Collectors;
 
 @Service
@@ -36,7 +36,7 @@ class UserServiceImpl implements UserService, UserProvider{
     }
 
     @Override
-    public List<UserEmailAndID> getUserByEmail(final String email) {
+    public List<UserEmailAndIdDto> getUserByEmail(final String email) {
         return userRepository.getUserByEmail(email);
     }
 
