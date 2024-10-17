@@ -2,13 +2,12 @@ package com.capgemini.wsb.fitnesstracker.user.internal;
 
 import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.UserBasicInfoDto;
-import com.capgemini.wsb.fitnesstracker.user.api.dto.UserEmailAndIdDto;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.UserDto;
+import com.capgemini.wsb.fitnesstracker.user.api.dto.UserEmailAndIdDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,49 +15,18 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/v1/users")
 @RequiredArgsConstructor
-
 class UserController {
 
     private final UserServiceImpl userService;
 
-    private final UserMapper userMapper;
-    private final UserRepository userRepository;
-
-
     @GetMapping
     public ResponseEntity<List<UserDto>> getAllUsersByAge() {
-        List<User> users = userService.findAllUsers();
-
-        List<UserDto> userDtos = users.stream()
-                .map(userMapper::toDto)
-                .toList();
-
-        return ResponseEntity.ok(userDtos);
+        return ResponseEntity.ok(userService.findAllUsers());
     }
 
     @GetMapping("/age")
     public ResponseEntity<List<UserDto>> getAllUsersByAge(@RequestParam Integer age) {
-        LocalDate cutoffDate = LocalDate.now().minusYears(age);
-
-        List<User> users = userService.findAllUsers().stream()
-                            .filter(user -> user.getBirthdate().isBefore(cutoffDate))
-                            .toList();
-
-        List<UserDto> userDtos = users.stream()
-                .map(userMapper::toDto)
-                .toList();
-
-        return ResponseEntity.ok(userDtos);
-    }
-
-    @PostMapping("/add")
-    public User addUser(@RequestBody User user) throws InterruptedException {
-
-        // Demonstracja how to use @RequestBody
-        System.out.println("User with e-mail: " + user.getEmail() + "passed to the request");
-
-        // TODO: saveUser with Service and return User
-        return userRepository.saveUser(user);
+        return ResponseEntity.ok(userService.findAllUsersOlderThan(age));
     }
 
     @GetMapping("/basic")
@@ -78,25 +46,21 @@ class UserController {
             return ResponseEntity.noContent().build(); // HTTP 204 No Content on successful deletion
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build(); // HTTP 404 Not Found if user not found
-
         }
     }
 
     @PostMapping("/create")
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto user) {
+        return ResponseEntity.ok(userService.createUser(user));
     }
 
-
-    @PutMapping("/update/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody User user) {
-        return userService.updateUser(id, user);
+    @PutMapping("/update")
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto user) {
+        return ResponseEntity.ok(userService.updateUser(user));
     }
 
     @GetMapping("/search/email/prefix")
     public List<UserEmailAndIdDto> getUsersByEmail(@RequestParam String emailPrefix) {
-
         return userService.getUserByEmail(emailPrefix);
-
     }
 }

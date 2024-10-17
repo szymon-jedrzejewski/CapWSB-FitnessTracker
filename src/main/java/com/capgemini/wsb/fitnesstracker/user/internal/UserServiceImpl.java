@@ -4,11 +4,13 @@ import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.capgemini.wsb.fitnesstracker.user.api.UserProvider;
 import com.capgemini.wsb.fitnesstracker.user.api.UserService;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.UserBasicInfoDto;
+import com.capgemini.wsb.fitnesstracker.user.api.dto.UserDto;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.UserEmailAndIdDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -17,32 +19,35 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-class UserServiceImpl implements UserService, UserProvider{
+class UserServiceImpl implements UserService, UserProvider {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @Override
-    public User createUser(final User user) {
+    public UserDto createUser(final UserDto user) {
         log.info("Creating User {}", user);
-        if (user.getId() != null) {
+
+        if (user.id() != null) {
             throw new IllegalArgumentException("User has already DB ID, update is not permitted!");
         }
-        return userRepository.save(user);
-    }
-
-    @Override
-    public Optional<User> getUser(final Long userId) {
-        return userRepository.findById(userId);
+        return userMapper.toUserDto(userRepository.save(userMapper.toEntity(user)));
     }
 
     @Override
     public List<UserEmailAndIdDto> getUserByEmail(final String email) {
-        return userRepository.getUserByEmail(email);
+        return userRepository.findByEmailFragment(email)
+                .stream()
+                .map(userMapper::toUserEmailAndIdDto)
+                .toList();
     }
 
     @Override
-    public List<User> findAllUsers() {
-        return userRepository.findAll();
+    public List<UserDto> findAllUsers() {
+        return userRepository.findAll()
+                .stream()
+                .map(userMapper::toUserDto)
+                .toList();
     }
 
     @Override
@@ -55,8 +60,17 @@ class UserServiceImpl implements UserService, UserProvider{
     @Override
     public Optional<User> findUserById(final Long userId) {
         return userRepository.findAll().stream()
-                .filter(user -> Objects.equals(user .getId(), userId))
+                .filter(user -> Objects.equals(user.getId(), userId))
                 .findFirst();
+    }
+
+    @Override
+    public List<UserDto> findAllUsersOlderThan(int age) {
+        return userRepository.findAll()
+                .stream()
+                .filter(user -> user.getBirthdate().isBefore(LocalDate.now().minusYears(age)))
+                .map(userMapper::toUserDto)
+                .toList();
     }
 
     @Override
@@ -64,13 +78,15 @@ class UserServiceImpl implements UserService, UserProvider{
         userRepository.deleteUserById(userId);
     }
 
-    public User updateUser(Long id, User userDetails) {
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("{User ID not found: " + id));
-        user.setFirstName(userDetails.getFirstName());
-        user.setLastName(userDetails.getLastName());
-        user.setBirthdate(userDetails.getBirthdate());
-        user.setEmail(userDetails.getEmail());
+    @Override
+    public UserDto updateUser(UserDto userDetails) {
+        User user = userRepository.findById(Objects.requireNonNull(userDetails.id()))
+                .orElseThrow(() -> new IllegalArgumentException("{User ID not found: " + userDetails.id()));
+        user.setFirstName(userDetails.firstName());
+        user.setLastName(userDetails.lastName());
+        user.setBirthdate(userDetails.birthdate());
+        user.setEmail(userDetails.email());
 
-        return userRepository.save(user);
+        return userMapper.toUserDto(userRepository.save(user));
     }
 }

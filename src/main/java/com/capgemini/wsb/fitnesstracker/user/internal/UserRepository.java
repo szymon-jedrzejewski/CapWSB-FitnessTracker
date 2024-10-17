@@ -1,7 +1,6 @@
 package com.capgemini.wsb.fitnesstracker.user.internal;
 
 import com.capgemini.wsb.fitnesstracker.user.api.User;
-import com.capgemini.wsb.fitnesstracker.user.api.dto.UserEmailAndIdDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -14,30 +13,32 @@ interface UserRepository extends JpaRepository<User, Long> {
 
     /**
      * Save user
+     *
      * @param user User
      * @return User
      */
-    default User saveUser(User user){
+    default User saveUser(User user) {
         return save(user);
     }
 
     /**
-     * Query searching users by email address. It matches by exact match.
+     * Query searching users by emailFragment address. It matches by exact match.
      *
-     * @param email email of the user to search
+     * @param emailFragment emailFragment of the user to search
      * @return {@link Optional} containing found user or {@link Optional#empty()} if none matched
      */
-    default List<User> findByEmail(String email) {
+    default List<User> findByEmailFragment(String emailFragment) {
         return findAll().stream()
-                .filter(user ->  user.getEmail().toLowerCase().contains(email.toLowerCase()))
+                .filter(user -> user.getEmail().toLowerCase().contains(emailFragment.toLowerCase()))
                 .toList();
     }
 
     /**
      * List all users by their first name, last name and ID
-     * @param id User's ID
+     *
+     * @param id        User's ID
      * @param firstName User's first name
-     * @param lastName User's last name
+     * @param lastName  User's last name
      * @return {@link List} containing users
      */
     default List<User> findUsersByBasicInfo(Long id, String firstName, String lastName) {
@@ -50,29 +51,16 @@ interface UserRepository extends JpaRepository<User, Long> {
 
     /**
      * Delete user by his ID
+     *
      * @param id User ID
      */
-    default void  deleteUserById(Long id){
+    default void deleteUserById(Long id) {
         Optional<User> user = findById(id);
-        if(user.isPresent()){
+        if (user.isPresent()) {
             delete(user.get());
-        }
-        else{
+        } else {
             throw new IllegalArgumentException("User ID: " + id + " not found");
         }
-    }
-
-    default List<UserEmailAndIdDto> getUserByEmail(String email){
-
-        List <User> users = this.findByEmail(email);
-
-        List<UserEmailAndIdDto> userDto;
-
-        userDto = users.stream()
-                .map(user -> new UserEmailAndIdDto(user.getId(), user.getEmail()))
-                .toList();
-
-        return userDto;
     }
 }
 
