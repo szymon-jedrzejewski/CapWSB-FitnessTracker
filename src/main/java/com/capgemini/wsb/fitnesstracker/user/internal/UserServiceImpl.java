@@ -3,10 +3,7 @@ package com.capgemini.wsb.fitnesstracker.user.internal;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.capgemini.wsb.fitnesstracker.user.api.UserProvider;
 import com.capgemini.wsb.fitnesstracker.user.api.UserService;
-import com.capgemini.wsb.fitnesstracker.user.api.dto.NewUserDto;
-import com.capgemini.wsb.fitnesstracker.user.api.dto.UserBasicInfoDto;
-import com.capgemini.wsb.fitnesstracker.user.api.dto.UserDto;
-import com.capgemini.wsb.fitnesstracker.user.api.dto.UserEmailAndIdDto;
+import com.capgemini.wsb.fitnesstracker.user.api.dto.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +15,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -55,11 +51,12 @@ class UserServiceImpl implements UserService, UserProvider, UserDetailsService {
     }
 
     @Override
-    public Optional<User> findUserById(final Long userId) {
-        return userRepository.findAll()
+    public UserDto findUserById(final Long userId) {
+        return userMapper.toUserDto(userRepository.findAll()
                 .stream()
                 .filter(user -> Objects.equals(user.getId(), userId))
-                .findFirst();
+                .findFirst()
+                .orElseThrow());
     }
 
     @Override
@@ -75,9 +72,6 @@ class UserServiceImpl implements UserService, UserProvider, UserDetailsService {
     public UserDto createUser(final NewUserDto user) {
         log.info("Creating User {}", user);
 
-        if (user.id() != null) {
-            throw new IllegalArgumentException("User has already DB ID, update is not permitted!");
-        }
         return userMapper.toUserDto(userRepository.save(userMapper.newUserDtoToEntity(user)));
     }
 
@@ -87,7 +81,7 @@ class UserServiceImpl implements UserService, UserProvider, UserDetailsService {
     }
 
     @Override
-    public UserDto updateUser(UserDto userDetails) {
+    public UserDto updateUser(UpdateUserDto userDetails) {
         User user = userRepository.findById(Objects.requireNonNull(userDetails.id()))
                 .orElseThrow(() -> new IllegalArgumentException("{User ID not found: " + userDetails.id()));
         user.setFirstName(userDetails.firstName());
@@ -95,10 +89,7 @@ class UserServiceImpl implements UserService, UserProvider, UserDetailsService {
         user.setBirthdate(userDetails.birthdate());
         user.setEmail(userDetails.email().toLowerCase());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setAuthorities(userDetails.roles()
-                .stream()
-                .map(role -> "ROLE_" + role.getAuthority())
-                .collect(Collectors.joining(","))
+        user.setAuthorities(String.join(",", userDetails.roles())
         );
 
         return userMapper.toUserDto(userRepository.save(user));

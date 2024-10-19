@@ -1,6 +1,7 @@
 package com.capgemini.wsb.fitnesstracker.user.api;
 
 import com.capgemini.wsb.fitnesstracker.user.api.dto.NewUserDto;
+import com.capgemini.wsb.fitnesstracker.user.api.dto.UpdateUserDto;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.UserDto;
 
 /**
@@ -18,5 +19,5 @@ public interface UserService extends UserProvider {
      */
     void deleteUserById(Long userId);
 
-    UserDto updateUser(UserDto user);
+    UserDto updateUser(UpdateUserDto user);
 }

@@ -1,16 +1,11 @@
 package com.capgemini.wsb.fitnesstracker.user.internal;
 
-import com.capgemini.wsb.fitnesstracker.user.api.User;
-import com.capgemini.wsb.fitnesstracker.user.api.dto.NewUserDto;
-import com.capgemini.wsb.fitnesstracker.user.api.dto.UserBasicInfoDto;
-import com.capgemini.wsb.fitnesstracker.user.api.dto.UserDto;
-import com.capgemini.wsb.fitnesstracker.user.api.dto.UserEmailAndIdDto;
+import com.capgemini.wsb.fitnesstracker.user.api.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController
@@ -36,8 +31,13 @@ class UserController {
     }
 
     @GetMapping("/search/{id}")
-    public Optional<User> getUserById(@PathVariable long id) {
-        return userService.findUserById(id);
+    public ResponseEntity<UserDto> getUserById(@PathVariable long id) {
+        return ResponseEntity.ok(userService.findUserById(id));
+    }
+
+    @GetMapping("/search/email")
+    public ResponseEntity<List<UserEmailAndIdDto>> getUsersByEmail(@RequestParam String fragment) {
+        return ResponseEntity.ok(userService.findUserByEmail(fragment));
     }
 
     @DeleteMapping("/admin/delete/{id}")
@@ -56,12 +56,7 @@ class UserController {
     }
 
     @PutMapping("/admin/update")
-    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto user) {
+    public ResponseEntity<UserDto> updateUser(@RequestBody UpdateUserDto user) {
         return ResponseEntity.ok(userService.updateUser(user));
-    }
-
-    @GetMapping("/search/email")
-    public ResponseEntity<List<UserEmailAndIdDto>> getUsersByEmail(@RequestParam String fragment) {
-        return ResponseEntity.ok(userService.findUserByEmail(fragment));
     }
 }

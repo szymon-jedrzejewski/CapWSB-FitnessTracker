@@ -47,5 +47,5 @@ public interface UserProvider extends UserDetailsService {
      * @param userId id of the user to be searched
      * @return An {@link Optional} containing the located user, or {@link Optional#empty()} if not found
      */
-    Optional<User> findUserById(Long userId);
+    UserDto findUserById(Long userId);
 }
