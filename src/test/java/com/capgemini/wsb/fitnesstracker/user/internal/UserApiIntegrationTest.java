@@ -204,11 +204,11 @@ class UserApiIntegrationTest extends IntegrationTestBase {
     }
 
     public static User generateUser() {
-        return new User(randomUUID().toString(), randomUUID().toString(), LocalDate.now(), randomUUID().toString());
+        return new User(randomUUID().toString(), randomUUID().toString(), LocalDate.now(), randomUUID().toString(), randomUUID().toString(), "ROLE_ADMIN");
     }
 
     private static User generateUserWithDate(LocalDate date) {
-        return new User(randomUUID().toString(), randomUUID().toString(), date, randomUUID().toString());
+        return new User(randomUUID().toString(), randomUUID().toString(), date, randomUUID().toString(), randomUUID().toString(), "ROLE_ADMIN");
     }
 
 

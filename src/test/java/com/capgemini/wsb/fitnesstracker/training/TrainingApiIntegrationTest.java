@@ -183,7 +183,7 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
     }
 
     private static User generateClient() {
-        return new User(randomUUID().toString(), randomUUID().toString(), now(), randomUUID().toString());
+        return new User(randomUUID().toString(), randomUUID().toString(), now(), randomUUID().toString(), randomUUID().toString(), "ROLE_ADMIN");
     }
 
     private static Training generateTraining(User user) throws ParseException {
