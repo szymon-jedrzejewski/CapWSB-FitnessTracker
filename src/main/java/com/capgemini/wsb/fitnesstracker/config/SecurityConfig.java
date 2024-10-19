@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 @Configuration
@@ -24,7 +25,7 @@ public class SecurityConfig {
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Bean
-    public AuthenticationProvider authenticationProvider(){
+    public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userService);
         provider.setPasswordEncoder(passwordEncoder);
@@ -36,7 +37,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(
                         (auth) -> auth
                                 .requestMatchers(antMatcher("/v1/users/admin/**")).hasRole("ADMIN")
-                                .requestMatchers(antMatcher("/v1/**")).hasAnyRole("ADMIN", "USER")
+                                .requestMatchers(antMatcher("/v1/users/search/**")).hasAnyRole("ADMIN", "USER")
                                 .anyRequest().permitAll()
                 )
                 .csrf(AbstractHttpConfigurer::disable)

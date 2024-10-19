@@ -4,23 +4,11 @@ import com.capgemini.wsb.fitnesstracker.user.api.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 interface UserRepository extends JpaRepository<User, Long> {
 
     User findByEmail(String email);
-
-    /**
-     * Save user
-     *
-     * @param user User
-     * @return User
-     */
-    default User saveUser(User user) {
-        return save(user);
-    }
 
     /**
      * Query searching users by emailFragment address. It matches by exact match.
@@ -32,22 +20,6 @@ interface UserRepository extends JpaRepository<User, Long> {
         return findAll().stream()
                 .filter(user -> user.getEmail().toLowerCase().contains(emailFragment.toLowerCase()))
                 .toList();
-    }
-
-    /**
-     * List all users by their first name, last name and ID
-     *
-     * @param id        User's ID
-     * @param firstName User's first name
-     * @param lastName  User's last name
-     * @return {@link List} containing users
-     */
-    default List<User> findUsersByBasicInfo(Long id, String firstName, String lastName) {
-        return findAll().stream()
-                .filter(user -> id == null || Objects.equals(user.getId(), id))
-                .filter(user -> firstName == null || Objects.equals(user.getFirstName(), firstName))
-                .filter(user -> lastName == null || Objects.equals(user.getLastName(), lastName))
-                .collect(Collectors.toList());
     }
 
     /**

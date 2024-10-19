@@ -20,22 +20,22 @@ class UserController {
 
     private final UserServiceImpl userService;
 
-    @GetMapping("/all")
+    @GetMapping("/search/all")
     public ResponseEntity<List<UserDto>> getAllUsersByAge() {
         return ResponseEntity.ok(userService.findAllUsers());
     }
 
-    @GetMapping("/age")
+    @GetMapping("/search/age")
     public ResponseEntity<List<UserDto>> getAllUsersByAge(@RequestParam Integer age) {
         return ResponseEntity.ok(userService.findAllUsersOlderThan(age));
     }
 
-    @GetMapping("/basic")
+    @GetMapping("/search/basic")
     public List<UserBasicInfoDto> getAllBasicInfo() {
         return userService.findAllUsersBasicInfo();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/search/{id}")
     public Optional<User> getUserById(@PathVariable long id) {
         return userService.findUserById(id);
     }
@@ -60,8 +60,8 @@ class UserController {
         return ResponseEntity.ok(userService.updateUser(user));
     }
 
-    @GetMapping("/search/email/prefix")
-    public List<UserEmailAndIdDto> getUsersByEmail(@RequestParam String emailPrefix) {
-        return userService.getUserByEmail(emailPrefix);
+    @GetMapping("/search/email")
+    public List<UserEmailAndIdDto> getUsersByEmail(@RequestParam String fragment) {
+        return userService.getUserByEmail(fragment);
     }
 }
