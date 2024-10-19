@@ -4,6 +4,7 @@ import com.capgemini.wsb.fitnesstracker.user.api.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
@@ -36,8 +37,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(
                         (auth) -> auth
-                                .requestMatchers(antMatcher("/v1/users/admin/**")).hasRole("ADMIN")
-                                .requestMatchers(antMatcher("/v1/users/search/**")).hasAnyRole("ADMIN", "USER")
+                                .requestMatchers(antMatcher(HttpMethod.POST, "/v1/users")).hasRole("ADMIN")
+                                .requestMatchers(antMatcher(HttpMethod.PUT, "/v1/users/**")).hasRole("ADMIN")
+                                .requestMatchers(antMatcher(HttpMethod.DELETE, "/v1/users/**")).hasRole("ADMIN")
+                                .requestMatchers(antMatcher("/v1/users/**")).hasAnyRole("ADMIN", "USER")
                                 .anyRequest().permitAll()
                 )
                 .csrf(AbstractHttpConfigurer::disable)

@@ -28,7 +28,7 @@ class UserServiceImpl implements UserService, UserProvider, UserDetailsService {
 
     @Override
     public List<UserEmailAndIdDto> findUserByEmail(final String email) {
-        return userRepository.findByEmailFragment(email)
+        return userRepository.findAllByEmailContaining(email)
                 .stream()
                 .map(userMapper::toUserEmailAndIdDto)
                 .toList();
@@ -46,24 +46,20 @@ class UserServiceImpl implements UserService, UserProvider, UserDetailsService {
     public List<UserBasicInfoDto> findAllUsersBasicInfo() {
         return userRepository.findAll()
                 .stream()
-                .map(user -> new UserBasicInfoDto(user.getId(), user.getFirstName() + " " + user.getLastName()))
+                .map(userMapper::toUserBasicInfoDto)
                 .collect(Collectors.toList());
     }
 
     @Override
     public UserDto findUserById(final Long userId) {
-        return userMapper.toUserDto(userRepository.findAll()
-                .stream()
-                .filter(user -> Objects.equals(user.getId(), userId))
-                .findFirst()
-                .orElseThrow());
+        return userMapper.toUserDto(userRepository.findById(userId).orElseThrow());
     }
 
     @Override
-    public List<UserDto> findAllUsersOlderThan(int age) {
+    public List<UserDto> findAllUsersOlderThan(LocalDate time) {
         return userRepository.findAll()
                 .stream()
-                .filter(user -> user.getBirthdate().isBefore(LocalDate.now().minusYears(age)))
+                .filter(user -> user.getBirthdate().isBefore(time))
                 .map(userMapper::toUserDto)
                 .toList();
     }
@@ -81,8 +77,8 @@ class UserServiceImpl implements UserService, UserProvider, UserDetailsService {
     }
 
     @Override
-    public UserDto updateUser(UpdateUserDto userDetails) {
-        User user = userRepository.findById(Objects.requireNonNull(userDetails.id()))
+    public UserDto updateUser(Long id, UpdateUserDto userDetails) {
+        User user = userRepository.findById(Objects.requireNonNull(id))
                 .orElseThrow(() -> new IllegalArgumentException("{User ID not found: " + userDetails.id()));
         user.setFirstName(userDetails.firstName());
         user.setLastName(userDetails.lastName());

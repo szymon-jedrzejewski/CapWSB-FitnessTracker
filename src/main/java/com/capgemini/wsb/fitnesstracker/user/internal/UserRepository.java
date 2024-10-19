@@ -8,22 +8,24 @@ import java.util.Optional;
 
 interface UserRepository extends JpaRepository<User, Long> {
 
+    /**
+     * Query searching users by email address. It matches by exact match.
+     *
+     * @param email fragment of the user to search
+     * @return {@link User} exact found user
+     */
     User findByEmail(String email);
 
     /**
-     * Query searching users by emailFragment address. It matches by exact match.
+     * Query searching users by emailFragment address. It matches by fragment match.
      *
-     * @param emailFragment emailFragment of the user to search
-     * @return {@link Optional} containing found user or {@link Optional#empty()} if none matched
+     * @param fragment fragment of the user to search
+     * @return {@link List} containing found users or empty {@link List} if none matched
      */
-    default List<User> findByEmailFragment(String emailFragment) {
-        return findAll().stream()
-                .filter(user -> user.getEmail().toLowerCase().contains(emailFragment.toLowerCase()))
-                .toList();
-    }
+    List<User> findAllByEmailContaining(String fragment);
 
     /**
-     * Delete user by his ID
+     * Delete user by users ID
      *
      * @param id User ID
      */

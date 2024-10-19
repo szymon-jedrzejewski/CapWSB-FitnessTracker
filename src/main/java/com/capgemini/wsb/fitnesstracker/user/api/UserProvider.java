@@ -5,6 +5,7 @@ import com.capgemini.wsb.fitnesstracker.user.api.dto.UserDto;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.UserEmailAndIdDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,7 +39,7 @@ public interface UserProvider extends UserDetailsService {
      *
      * @return An {@link List} containing the all users older than given age,
      */
-    List<UserDto> findAllUsersOlderThan(int age);
+    List<UserDto> findAllUsersOlderThan(LocalDate time);
 
     /**
      * Retrieves a user based on their ID.

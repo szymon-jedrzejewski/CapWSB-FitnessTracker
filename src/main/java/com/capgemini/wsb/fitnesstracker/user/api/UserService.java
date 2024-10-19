@@ -19,5 +19,5 @@ public interface UserService extends UserProvider {
      */
     void deleteUserById(Long userId);
 
-    UserDto updateUser(UpdateUserDto user);
+    UserDto updateUser(Long id, UpdateUserDto user);
 }

@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static java.time.LocalDate.now;
@@ -41,7 +42,7 @@ class UserServiceImplTest {
     }
 
     @AfterEach
-    public void tearDown() throws Exception {
+    public void tearDown() {
         userRepository.deleteAll();
     }
 
@@ -88,8 +89,8 @@ class UserServiceImplTest {
 
         assertNotNull(result);
         assertEquals(2, result.size());
-        assertEquals("Emma Jhonson", result.get(0).fullName());
-        assertEquals("Jan Kowalski", result.get(1).fullName());
+        assertEquals("Emma", result.get(0).firstName());
+        assertEquals("Jan", result.get(1).firstName());
     }
 
     @Test
@@ -103,9 +104,7 @@ class UserServiceImplTest {
 
     @Test
     void testFindAllUsersOlderThan() {
-        int age = 19;
-
-        List<UserDto> result = userService.findAllUsersOlderThan(age);
+        List<UserDto> result = userService.findAllUsersOlderThan(LocalDate.of(2005, 1, 1));
 
         assertNotNull(result);
         assertEquals(1, result.size());
@@ -147,7 +146,7 @@ class UserServiceImplTest {
                 "john@example.com",
                 List.of("ROLE_USER"));
 
-        UserDto result = userService.updateUser(updateUserDto);
+        UserDto result = userService.updateUser(user.getId(), updateUserDto);
 
         assertNotNull(result);
         assertEquals("John", result.firstName());

@@ -2,6 +2,7 @@ package com.capgemini.wsb.fitnesstracker.user.internal;
 
 import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.NewUserDto;
+import com.capgemini.wsb.fitnesstracker.user.api.dto.UserBasicInfoDto;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.UserDto;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.UserEmailAndIdDto;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +35,10 @@ class UserMapper {
                 user.email().toLowerCase(),
                 bCryptPasswordEncoder.encode(user.password()),
                 user.roles().stream().map(role -> "ROLE_" + role).collect(Collectors.joining(",")));
+    }
+
+    UserBasicInfoDto toUserBasicInfoDto(User user) {
+        return new UserBasicInfoDto(user.getFirstName(), user.getLastName());
     }
 
     UserEmailAndIdDto toUserEmailAndIdDto(User user) {
