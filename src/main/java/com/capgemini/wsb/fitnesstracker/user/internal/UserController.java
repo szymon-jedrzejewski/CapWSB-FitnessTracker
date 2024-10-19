@@ -1,6 +1,7 @@
 package com.capgemini.wsb.fitnesstracker.user.internal;
 
 import com.capgemini.wsb.fitnesstracker.user.api.User;
+import com.capgemini.wsb.fitnesstracker.user.api.dto.NewUserDto;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.UserBasicInfoDto;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.UserDto;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.UserEmailAndIdDto;
@@ -19,7 +20,7 @@ class UserController {
 
     private final UserServiceImpl userService;
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<UserDto>> getAllUsersByAge() {
         return ResponseEntity.ok(userService.findAllUsers());
     }
@@ -39,7 +40,7 @@ class UserController {
         return userService.findUserById(id);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/admin/delete/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         try {
             userService.deleteUserById(id);
@@ -49,12 +50,12 @@ class UserController {
         }
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto user) {
+    @PostMapping("/admin/create")
+    public ResponseEntity<UserDto> createUser(@RequestBody NewUserDto user) {
         return ResponseEntity.ok(userService.createUser(user));
     }
 
-    @PutMapping("/update")
+    @PutMapping("/admin/update")
     public ResponseEntity<UserDto> updateUser(@RequestBody UserDto user) {
         return ResponseEntity.ok(userService.updateUser(user));
     }

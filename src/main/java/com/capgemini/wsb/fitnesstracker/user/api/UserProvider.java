@@ -3,11 +3,12 @@ package com.capgemini.wsb.fitnesstracker.user.api;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.UserBasicInfoDto;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.UserDto;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.UserEmailAndIdDto;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface UserProvider {
+public interface UserProvider extends UserDetailsService {
     /**
      * Retrieves a user based on their email.
      * If the user with given email is not found, then {@link Optional#empty()} will be returned.

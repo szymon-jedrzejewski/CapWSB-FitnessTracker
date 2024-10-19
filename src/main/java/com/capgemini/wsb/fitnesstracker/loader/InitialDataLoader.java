@@ -3,13 +3,14 @@ package com.capgemini.wsb.fitnesstracker.loader;
 import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import com.capgemini.wsb.fitnesstracker.training.internal.ActivityType;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
+import lombok.AllArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,13 +30,12 @@ import static java.util.Objects.isNull;
 @Profile("loadInitialData")
 @Slf4j
 @ToString
+@AllArgsConstructor
 class InitialDataLoader {
 
-    @Autowired
     private JpaRepository<User, Long> userRepository;
-
-    @Autowired
     private JpaRepository<Training, Long> trainingRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @EventListener
     @Transactional
@@ -52,27 +52,29 @@ class InitialDataLoader {
         log.info("Finished loading initial data");
     }
 
-    private User generateUser(String name, String lastName, int age) {
+    private User generateUser(String name, String lastName, int age, String roles) {
         User user = new User(name,
                 lastName,
                 now().minusYears(age),
-                "%s.%s@domain.com".formatted(name, lastName));
+                "%s.%s@domain.com".formatted(name, lastName),
+                bCryptPasswordEncoder.encode("123"),
+                roles);
         return userRepository.save(user);
     }
 
     private List<User> generateSampleUsers() {
         List<User> users = new ArrayList<>();
 
-        users.add(generateUser("Emma", "Johnson", 28));
-        users.add(generateUser("Ethan", "Taylor", 51));
-        users.add(generateUser("Olivia", "Davis", 76));
-        users.add(generateUser("Daniel", "Thomas", 34));
-        users.add(generateUser("Sophia", "Baker", 49));
-        users.add(generateUser("Liam", "Jones", 23));
-        users.add(generateUser("Ava", "Williams", 21));
-        users.add(generateUser("Noah", "Miller", 39));
-        users.add(generateUser("Grace", "Anderson", 33));
-        users.add(generateUser("Oliver", "Swift", 29));
+        users.add(generateUser("Emma", "Johnson", 28, "ROLE_USER"));
+        users.add(generateUser("Ethan", "Taylor", 51, "ROLE_USER"));
+        users.add(generateUser("Olivia", "Davis", 76, "ROLE_USER"));
+        users.add(generateUser("Daniel", "Thomas", 34, "ROLE_USER"));
+        users.add(generateUser("Sophia", "Baker", 49, "ROLE_USER"));
+        users.add(generateUser("Liam", "Jones", 23, "ROLE_USER"));
+        users.add(generateUser("Ava", "Williams", 21, "ROLE_USER"));
+        users.add(generateUser("Noah", "Miller", 39, "ROLE_USER"));
+        users.add(generateUser("Grace", "Anderson", 33, "ROLE_USER"));
+        users.add(generateUser("Oliver", "Swift", 29, "ROLE_ADMIN"));
 
         return users;
     }

@@ -3,11 +3,17 @@ package com.capgemini.wsb.fitnesstracker.user.internal;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.capgemini.wsb.fitnesstracker.user.api.UserProvider;
 import com.capgemini.wsb.fitnesstracker.user.api.UserService;
+import com.capgemini.wsb.fitnesstracker.user.api.dto.NewUserDto;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.UserBasicInfoDto;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.UserDto;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.UserEmailAndIdDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -19,19 +25,20 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-class UserServiceImpl implements UserService, UserProvider {
+class UserServiceImpl implements UserService, UserProvider, UserDetailsService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public UserDto createUser(final UserDto user) {
+    public UserDto createUser(final NewUserDto user) {
         log.info("Creating User {}", user);
 
         if (user.id() != null) {
             throw new IllegalArgumentException("User has already DB ID, update is not permitted!");
         }
-        return userMapper.toUserDto(userRepository.save(userMapper.toEntity(user)));
+        return userMapper.toUserDto(userRepository.save(userMapper.newUserDtoToEntity(user)));
     }
 
     @Override
@@ -86,7 +93,18 @@ class UserServiceImpl implements UserService, UserProvider {
         user.setLastName(userDetails.lastName());
         user.setBirthdate(userDetails.birthdate());
         user.setEmail(userDetails.email());
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setAuthorities(userDetails.roles()
+                .stream()
+                .map(role -> "ROLE_" + role.getAuthority())
+                .collect(Collectors.joining(","))
+        );
 
         return userMapper.toUserDto(userRepository.save(user));
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByEmail(username);
     }
 }

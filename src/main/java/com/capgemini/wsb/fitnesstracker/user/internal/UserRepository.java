@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 interface UserRepository extends JpaRepository<User, Long> {
 
+    User findByEmail(String email);
 
     /**
      * Save user
