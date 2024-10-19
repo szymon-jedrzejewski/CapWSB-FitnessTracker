@@ -31,17 +31,7 @@ class UserServiceImpl implements UserService, UserProvider, UserDetailsService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public UserDto createUser(final NewUserDto user) {
-        log.info("Creating User {}", user);
-
-        if (user.id() != null) {
-            throw new IllegalArgumentException("User has already DB ID, update is not permitted!");
-        }
-        return userMapper.toUserDto(userRepository.save(userMapper.newUserDtoToEntity(user)));
-    }
-
-    @Override
-    public List<UserEmailAndIdDto> getUserByEmail(final String email) {
+    public List<UserEmailAndIdDto> findUserByEmail(final String email) {
         return userRepository.findByEmailFragment(email)
                 .stream()
                 .map(userMapper::toUserEmailAndIdDto)
@@ -58,14 +48,16 @@ class UserServiceImpl implements UserService, UserProvider, UserDetailsService {
 
     @Override
     public List<UserBasicInfoDto> findAllUsersBasicInfo() {
-        return userRepository.findAll().stream()
+        return userRepository.findAll()
+                .stream()
                 .map(user -> new UserBasicInfoDto(user.getId(), user.getFirstName() + " " + user.getLastName()))
                 .collect(Collectors.toList());
     }
 
     @Override
     public Optional<User> findUserById(final Long userId) {
-        return userRepository.findAll().stream()
+        return userRepository.findAll()
+                .stream()
                 .filter(user -> Objects.equals(user.getId(), userId))
                 .findFirst();
     }
@@ -77,6 +69,16 @@ class UserServiceImpl implements UserService, UserProvider, UserDetailsService {
                 .filter(user -> user.getBirthdate().isBefore(LocalDate.now().minusYears(age)))
                 .map(userMapper::toUserDto)
                 .toList();
+    }
+
+    @Override
+    public UserDto createUser(final NewUserDto user) {
+        log.info("Creating User {}", user);
+
+        if (user.id() != null) {
+            throw new IllegalArgumentException("User has already DB ID, update is not permitted!");
+        }
+        return userMapper.toUserDto(userRepository.save(userMapper.newUserDtoToEntity(user)));
     }
 
     @Override

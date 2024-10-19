@@ -31,8 +31,8 @@ class UserController {
     }
 
     @GetMapping("/search/basic")
-    public List<UserBasicInfoDto> getAllBasicInfo() {
-        return userService.findAllUsersBasicInfo();
+    public ResponseEntity<List<UserBasicInfoDto>> getAllBasicInfo() {
+        return ResponseEntity.ok(userService.findAllUsersBasicInfo());
     }
 
     @GetMapping("/search/{id}")
@@ -61,7 +61,7 @@ class UserController {
     }
 
     @GetMapping("/search/email")
-    public List<UserEmailAndIdDto> getUsersByEmail(@RequestParam String fragment) {
-        return userService.getUserByEmail(fragment);
+    public ResponseEntity<List<UserEmailAndIdDto>> getUsersByEmail(@RequestParam String fragment) {
+        return ResponseEntity.ok(userService.findUserByEmail(fragment));
     }
 }

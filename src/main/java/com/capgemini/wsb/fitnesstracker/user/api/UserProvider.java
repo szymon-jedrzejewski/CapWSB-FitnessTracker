@@ -16,7 +16,7 @@ public interface UserProvider extends UserDetailsService {
      * @param email The email of the user to be searched
      * @return An {@link Optional} containing the located user, or {@link Optional#empty()} if not found
      */
-    List<UserEmailAndIdDto> getUserByEmail(String email);
+    List<UserEmailAndIdDto> findUserByEmail(String email);
 
     /**
      * Retrieves all users.
