@@ -91,7 +91,7 @@ class UserServiceImpl implements UserService, UserProvider, UserDetailsService {
         user.setFirstName(userDetails.firstName());
         user.setLastName(userDetails.lastName());
         user.setBirthdate(userDetails.birthdate());
-        user.setEmail(userDetails.email());
+        user.setEmail(userDetails.email().toLowerCase());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setAuthorities(userDetails.roles()
                 .stream()

@@ -56,7 +56,7 @@ class InitialDataLoader {
         User user = new User(name,
                 lastName,
                 now().minusYears(age),
-                "%s.%s@domain.com".formatted(name, lastName),
+                "%s.%s@domain.com".formatted(name, lastName).toLowerCase(),
                 bCryptPasswordEncoder.encode("123"),
                 roles);
         return userRepository.save(user);

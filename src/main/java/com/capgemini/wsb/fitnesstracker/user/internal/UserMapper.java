@@ -31,7 +31,7 @@ class UserMapper {
                 user.firstName(),
                 user.lastName(),
                 user.birthdate(),
-                user.email(),
+                user.email().toLowerCase(),
                 bCryptPasswordEncoder.encode(user.password()),
                 user.roles().stream().map(role -> "ROLE_" + role).collect(Collectors.joining(",")));
     }
