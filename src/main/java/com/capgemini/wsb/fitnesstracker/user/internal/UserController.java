@@ -42,12 +42,9 @@ class UserController {
 
     @DeleteMapping("/admin/delete/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        try {
-            userService.deleteUserById(id);
-            return ResponseEntity.noContent().build(); // HTTP 204 No Content on successful deletion
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.notFound().build(); // HTTP 404 Not Found if user not found
-        }
+
+        userService.deleteUserById(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/admin/create")

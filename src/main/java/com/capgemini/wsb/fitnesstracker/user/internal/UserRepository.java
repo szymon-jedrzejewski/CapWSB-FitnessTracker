@@ -29,11 +29,7 @@ interface UserRepository extends JpaRepository<User, Long> {
      */
     default void deleteUserById(Long id) {
         Optional<User> user = findById(id);
-        if (user.isPresent()) {
-            delete(user.get());
-        } else {
-            throw new IllegalArgumentException("User ID: " + id + " not found");
-        }
+        user.ifPresent(this::delete);
     }
 }
 
