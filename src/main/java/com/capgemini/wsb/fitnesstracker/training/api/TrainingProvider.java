@@ -1,7 +1,10 @@
 package com.capgemini.wsb.fitnesstracker.training.api;
 
-import com.capgemini.wsb.fitnesstracker.user.api.User;
+import com.capgemini.wsb.fitnesstracker.training.api.dto.TrainingDto;
+import com.capgemini.wsb.fitnesstracker.training.internal.ActivityType;
+import com.capgemini.wsb.fitnesstracker.user.api.dto.*;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface TrainingProvider {
@@ -13,6 +16,13 @@ public interface TrainingProvider {
      * @param trainingId id of the training to be searched
      * @return An {@link Optional} containing the located Training, or {@link Optional#empty()} if not found
      */
-    Optional<User> getTraining(Long trainingId);
+    Optional<Training> getTrainingById(Long trainingId);
 
+    List<TrainingDto> findAllTrainings();
+
+    List<Training> getTrainingsByUser(UserDto user);
+
+    Training createTraining(Training training);
+
+    List<TrainingDto> getTrainingsByActivityType(ActivityType activityType);
 }
