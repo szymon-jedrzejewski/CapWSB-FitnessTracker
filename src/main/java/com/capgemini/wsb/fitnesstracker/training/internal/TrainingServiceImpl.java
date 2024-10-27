@@ -1,4 +1,5 @@
 package com.capgemini.wsb.fitnesstracker.training.internal;
+import com.capgemini.wsb.fitnesstracker.training.api.TrainingNotFoundException;
 import com.capgemini.wsb.fitnesstracker.training.api.TrainingService;
 import com.capgemini.wsb.fitnesstracker.training.api.dto.NewTrainingDto;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.*;
@@ -40,9 +41,12 @@ public class TrainingServiceImpl implements TrainingService {
         return trainingRepository.findByUser(user);
     }
 
+
     @Override
-    public Training createTraining(Training training) {
-        return null;
+    public TrainingDto createTraining(NewTrainingDto newTrainingDto) {
+        Training training = trainingMapper.newTrainingDtoToEntity(newTrainingDto);
+        Training savedTraining = trainingRepository.save(training);
+        return trainingMapper.toTrainingDto(savedTraining);
     }
 
     @Override
@@ -62,16 +66,19 @@ public class TrainingServiceImpl implements TrainingService {
 
     @Override
     public void deleteTrainingById(Long trainingId) {
-
+        trainingRepository.deleteById(trainingId);
     }
 
     @Override
-    public TrainingDto createTraining(NewTrainingDto training) {
-        return null;
-    }
-
-    @Override
-    public Training updateTraining(Long id, Training trainingDto) {
-        return null;
+    public Training updateTraining(Long id, Training trainingUpdates) {
+        Optional<Training> optionalTraining = trainingRepository.findById(id);
+        if (optionalTraining.isPresent()) {
+            Training training = optionalTraining.get();
+            training.setDistance(trainingUpdates.getDistance());
+            training.setAverageSpeed(trainingUpdates.getAverageSpeed());
+            return trainingRepository.save(training);
+        } else {
+            throw new TrainingNotFoundException(id);
+        }
     }
 }

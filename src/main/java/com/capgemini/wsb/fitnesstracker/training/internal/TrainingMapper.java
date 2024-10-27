@@ -32,4 +32,15 @@ public class TrainingMapper {
                 newTrainingDto.averageSpeed()
         );
     }
+
+    Training updateTrainingDtoToEntity(UpdateTrainingDto updateTrainingDto) {
+        return new Training(
+                updateTrainingDto.user(),
+                updateTrainingDto.startTime(),
+                updateTrainingDto.endTime(),
+                updateTrainingDto.activityType(),
+                updateTrainingDto.distance(),
+                updateTrainingDto.averageSpeed()
+        );
+    }
 }
