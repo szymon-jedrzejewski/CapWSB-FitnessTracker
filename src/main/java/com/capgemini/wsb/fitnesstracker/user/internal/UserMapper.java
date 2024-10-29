@@ -38,7 +38,7 @@ class UserMapper {
     }
 
     UserBasicInfoDto toUserBasicInfoDto(User user) {
-        return new UserBasicInfoDto(user.getFirstName(), user.getLastName());
+        return new UserBasicInfoDto(user.getId(), user.getFirstName(), user.getLastName());
     }
 
     UserEmailAndIdDto toUserEmailAndIdDto(User user) {
