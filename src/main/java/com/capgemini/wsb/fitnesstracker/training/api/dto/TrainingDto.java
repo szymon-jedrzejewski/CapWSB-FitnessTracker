@@ -9,6 +9,6 @@ public record TrainingDto(
         Date startTime,
         Date endTime,
         ActivityType activityType,
-        double distance,
-        double averageSpeed
+        Double distance,
+        Double averageSpeed
 ) {}

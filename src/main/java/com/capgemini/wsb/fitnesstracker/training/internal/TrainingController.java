@@ -27,22 +27,15 @@ public class TrainingController {
     }
 
     @GetMapping("/user")
-    public List<Training> getTrainingsByUser(@RequestParam Long userid) {
+    public ResponseEntity<List<Training>> getTrainingsByUser(@RequestParam Long userid) {
         UserDto user = userService.findUserById(userid);
-        return trainingService.getTrainingsByUser(user);
+        return ResponseEntity.ok(trainingService.getTrainingsByUser(user));
     }
 
     @GetMapping("/completed")
     public ResponseEntity<List<TrainingDto>> getCompletedTrainingsAfterDate(@RequestParam("date") String dateStr) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date date = dateFormat.parse(dateStr);
-            List<TrainingDto> completedTrainings = trainingService.getCompletedTrainingsAfterDate(date);
-            return ResponseEntity.ok(completedTrainings);
-        } catch (ParseException e) {
-            return ResponseEntity.badRequest().build();
-        }
-
+        List<TrainingDto> completedTrainings = trainingService.getCompletedTrainingsAfterDate(dateStr);
+        return ResponseEntity.ok(completedTrainings);
     }
 
     @GetMapping("/activity")

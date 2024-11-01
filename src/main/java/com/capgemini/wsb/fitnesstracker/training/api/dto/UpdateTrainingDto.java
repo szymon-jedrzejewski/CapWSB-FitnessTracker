@@ -10,6 +10,6 @@ public record UpdateTrainingDto(
         Date startTime,
         Date endTime,
         ActivityType activityType,
-        double distance,
-        double averageSpeed
+        Double distance,
+        Double averageSpeed
 ) {}

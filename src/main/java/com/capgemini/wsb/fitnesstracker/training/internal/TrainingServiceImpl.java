@@ -9,11 +9,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-// TODO: Provide Impl
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -53,11 +54,17 @@ public class TrainingServiceImpl implements TrainingService {
                 .toList();
     }
 
-    public List<TrainingDto> getCompletedTrainingsAfterDate(Date date) {
-        return trainingRepository.findAllByEndTimeAfter(date)
-                .stream()
-                .map(trainingMapper::toTrainingDto)
-                .toList();
+    public List<TrainingDto> getCompletedTrainingsAfterDate(String dateStr) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = dateFormat.parse(dateStr);
+            return trainingRepository.findAllByEndTimeAfter(date)
+                    .stream()
+                    .map(trainingMapper::toTrainingDto)
+                    .toList();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
