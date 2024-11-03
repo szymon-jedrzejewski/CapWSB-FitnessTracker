@@ -12,4 +12,11 @@ public record UserDto(@Nullable Long id, String firstName, String lastName,
                       String email, List<SimpleGrantedAuthority> roles) {
 
 
+    public String password() {
+        return "";
+    }
+
+    public String authorities() {
+        return "";
+    }
 }

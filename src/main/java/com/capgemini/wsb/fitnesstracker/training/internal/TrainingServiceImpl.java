@@ -1,6 +1,7 @@
 package com.capgemini.wsb.fitnesstracker.training.internal;
 import com.capgemini.wsb.fitnesstracker.training.api.TrainingService;
 import com.capgemini.wsb.fitnesstracker.training.api.dto.NewTrainingDto;
+import com.capgemini.wsb.fitnesstracker.user.api.UserService;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.*;
 import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import com.capgemini.wsb.fitnesstracker.training.api.dto.TrainingDto;
@@ -22,9 +23,10 @@ public class TrainingServiceImpl implements TrainingService {
     private final TrainingMapper trainingMapper;
     private final TrainingRepository trainingRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final UserService userService;
 
     @Override
-    public Optional<Training> getTrainingById(final Long trainingId) {
+    public Optional<Training> findTrainingsById(final Long trainingId) {
         throw new UnsupportedOperationException("Not finished yet");
     }
 
@@ -37,7 +39,8 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public List<Training> getTrainingsByUser(UserDto user) {
+    public List<Training> findTrainingsByUser(Long userId) {
+        UserDto user = userService.findUserById(userId);
         return trainingRepository.findByUser(user);
     }
 
@@ -47,7 +50,7 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public List<TrainingDto> getTrainingsByActivityType(ActivityType activityType) {
+    public List<TrainingDto> findTrainingsByActivityType(ActivityType activityType) {
         return trainingRepository.findByActivityType(activityType)
                 .stream()
                 .map(trainingMapper::toTrainingDto)

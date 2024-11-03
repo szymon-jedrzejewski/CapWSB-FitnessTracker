@@ -27,6 +27,15 @@ class UserMapper {
                 List.copyOf(user.getAuthorities()));
     }
 
+    User mapUserDtoToUser(UserDto userDto) {
+        return new User(userDto.firstName(),
+                userDto.lastName(),
+                userDto.birthdate(),
+                userDto.email(),
+                userDto.password(),
+                userDto.authorities());
+    }
+
     User newUserDtoToEntity(NewUserDto user) {
         return new User(
                 user.firstName(),
