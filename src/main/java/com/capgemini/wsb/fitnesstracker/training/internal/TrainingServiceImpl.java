@@ -2,6 +2,7 @@ package com.capgemini.wsb.fitnesstracker.training.internal;
 import com.capgemini.wsb.fitnesstracker.training.api.TrainingNotFoundException;
 import com.capgemini.wsb.fitnesstracker.training.api.TrainingService;
 import com.capgemini.wsb.fitnesstracker.training.api.dto.NewTrainingDto;
+import com.capgemini.wsb.fitnesstracker.training.api.dto.UpdateTrainingDto;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.*;
 import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import com.capgemini.wsb.fitnesstracker.training.api.dto.TrainingDto;
@@ -57,7 +58,7 @@ public class TrainingServiceImpl implements TrainingService {
                 .toList();
     }
 
-    public List<TrainingDto> getCompletedTrainingsAfterDate(Date date) {
+    public List<TrainingDto> findCompletedTrainingsAfterDate(Date date) {
         return trainingRepository.findAllByEndTimeAfter(date)
                 .stream()
                 .map(trainingMapper::toTrainingDto)
@@ -69,16 +70,15 @@ public class TrainingServiceImpl implements TrainingService {
         trainingRepository.deleteById(trainingId);
     }
 
+
     @Override
-    public Training updateTraining(Long id, Training trainingUpdates) {
-        Optional<Training> optionalTraining = trainingRepository.findById(id);
-        if (optionalTraining.isPresent()) {
-            Training training = optionalTraining.get();
-            training.setDistance(trainingUpdates.getDistance());
-            training.setAverageSpeed(trainingUpdates.getAverageSpeed());
-            return trainingRepository.save(training);
-        } else {
-            throw new TrainingNotFoundException(id);
-        }
+    public TrainingDto updateTraining(Long id, UpdateTrainingDto updateTrainingDto) {
+        Training existingTraining = trainingRepository.findById(id)
+                .orElseThrow(() -> new TrainingNotFoundException(id));
+
+        trainingMapper.updateTrainingDtoToEntity(updateTrainingDto, existingTraining);
+        Training updatedTraining = trainingRepository.save(existingTraining);
+
+        return trainingMapper.toTrainingDto(updatedTraining);
     }
 }

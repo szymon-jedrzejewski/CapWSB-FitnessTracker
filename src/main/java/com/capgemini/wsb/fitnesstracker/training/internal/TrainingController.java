@@ -47,7 +47,7 @@ public class TrainingController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
             Date date = dateFormat.parse(dateStr);
-            List<TrainingDto> completedTrainings = trainingService.getCompletedTrainingsAfterDate(date);
+            List<TrainingDto> completedTrainings = trainingService.findCompletedTrainingsAfterDate(date);
             return ResponseEntity.ok(completedTrainings);
         } catch (ParseException e) {
             return ResponseEntity.badRequest().build();
@@ -65,11 +65,9 @@ public class TrainingController {
         TrainingDto createdTraining = trainingService.createTraining(newTrainingDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdTraining);
     }
-
     @PutMapping("/{id}")
     public ResponseEntity<TrainingDto> updateTraining(@PathVariable Long id, @RequestBody UpdateTrainingDto updateTrainingDto) {
-        Training training = trainingMapper.updateTrainingDtoToEntity(updateTrainingDto);
-        Training updatedTraining = trainingService.updateTraining(id, training);
-        return ResponseEntity.ok(trainingMapper.toTrainingDto(updatedTraining));
-    }
+        TrainingDto updatedTraining = trainingService.updateTraining(id, updateTrainingDto);
+        return ResponseEntity.ok(updatedTraining);
+}
 }
