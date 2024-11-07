@@ -5,6 +5,7 @@ import com.capgemini.wsb.fitnesstracker.user.api.UserService;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.*;
 import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import com.capgemini.wsb.fitnesstracker.training.api.dto.TrainingDto;
+import com.capgemini.wsb.fitnesstracker.user.internal.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,6 +22,7 @@ import java.util.Optional;
 @Slf4j
 public class TrainingServiceImpl implements TrainingService {
     private final TrainingMapper trainingMapper;
+    private final UserMapper userMapper;
     private final TrainingRepository trainingRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserService userService;

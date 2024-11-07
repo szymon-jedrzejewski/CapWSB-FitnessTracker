@@ -21,5 +21,4 @@ public interface UserService extends UserProvider {
 
     UserDto updateUser(Long id, UpdateUserDto user);
 
-    User mapUserDtoToUser(UserDto userDto);
 }

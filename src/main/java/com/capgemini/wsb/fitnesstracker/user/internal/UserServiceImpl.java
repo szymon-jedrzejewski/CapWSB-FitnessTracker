@@ -93,9 +93,4 @@ class UserServiceImpl implements UserService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByEmail(username);
     }
-
-    @Override
-    public User mapUserDtoToUser(UserDto userDto) {
-        return userMapper.mapUserDtoToUser(userDto);
-    }
 }

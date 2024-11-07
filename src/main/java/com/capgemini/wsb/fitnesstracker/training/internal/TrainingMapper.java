@@ -2,6 +2,8 @@ package com.capgemini.wsb.fitnesstracker.training.internal;
 import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import com.capgemini.wsb.fitnesstracker.user.api.UserService;
 
+import com.capgemini.wsb.fitnesstracker.user.internal.UserMapper;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -12,7 +14,7 @@ import com.capgemini.wsb.fitnesstracker.user.api.User;
 @RequiredArgsConstructor
 public class TrainingMapper {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final UserService userService;
+    private final UserMapper userMapper;
 
     TrainingDto toTrainingDto(Training training) {
         return new TrainingDto(
@@ -28,7 +30,7 @@ public class TrainingMapper {
 
     Training newTrainingDtoToEntity(NewTrainingDto newTrainingDto) {
 
-        User user = userService.mapUserDtoToUser(newTrainingDto.userDto());
+        User user = userMapper.mapUserDtoToUser(newTrainingDto.userDto());
 
         return new Training(
                 user,
@@ -37,6 +39,7 @@ public class TrainingMapper {
                 newTrainingDto.activityType(),
                 newTrainingDto.distance(),
                 newTrainingDto.averageSpeed()
+
         );
     }
 }
