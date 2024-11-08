@@ -1,6 +1,7 @@
 package com.capgemini.wsb.fitnesstracker.training.internal;
 import com.capgemini.wsb.fitnesstracker.training.api.TrainingService;
 import com.capgemini.wsb.fitnesstracker.training.api.dto.NewTrainingDto;
+import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.capgemini.wsb.fitnesstracker.user.api.UserService;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.*;
 import com.capgemini.wsb.fitnesstracker.training.api.Training;
@@ -85,5 +86,10 @@ public class TrainingServiceImpl implements TrainingService {
     @Override
     public Training updateTraining(Long id, Training trainingDto) {
         return null;
+    }
+
+    @Override
+    public User mapUserDtoToUser(UserDto userDto) {
+        return userMapper.mapUserDtoToUser(userDto);
     }
 }

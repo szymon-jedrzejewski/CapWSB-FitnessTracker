@@ -2,6 +2,7 @@ package com.capgemini.wsb.fitnesstracker.training.api;
 
 import com.capgemini.wsb.fitnesstracker.training.api.dto.TrainingDto;
 import com.capgemini.wsb.fitnesstracker.training.internal.ActivityType;
+import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.*;
 import com.capgemini.wsb.fitnesstracker.training.api.dto.TrainingDto;
 import com.capgemini.wsb.fitnesstracker.training.internal.ActivityType;
@@ -27,4 +28,5 @@ public interface TrainingProvider {
     Training createTraining(Training training);
 
     List<TrainingDto> findTrainingsByActivityType(ActivityType activityType);
+    User mapUserDtoToUser (UserDto userDto);
 }
