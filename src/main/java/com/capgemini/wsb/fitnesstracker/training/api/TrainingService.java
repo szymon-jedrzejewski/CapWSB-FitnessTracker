@@ -16,4 +16,5 @@ public interface TrainingService extends TrainingProvider {
     void deleteTrainingById(Long trainingId);
     TrainingDto createTraining(NewTrainingDto newTrainingDto);
     TrainingDto updateTraining(Long id, UpdateTrainingDto updateTrainingDto);
+    List<TrainingDto> getTrainingsByUserId(Long userId);
 }

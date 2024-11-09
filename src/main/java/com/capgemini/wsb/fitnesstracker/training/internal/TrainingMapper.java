@@ -33,7 +33,7 @@ public class TrainingMapper {
         );
     }
 
-    void updateTrainingDtoToEntity(UpdateTrainingDto updateTrainingDto, Training existingTraining) {
+    Training updateTrainingDtoToEntity(UpdateTrainingDto updateTrainingDto, Training existingTraining) {
         if (updateTrainingDto.user() != null) {
             existingTraining.setUser(updateTrainingDto.user());
         }
@@ -52,5 +52,7 @@ public class TrainingMapper {
         if (updateTrainingDto.averageSpeed() != null) {
             existingTraining.setAverageSpeed(updateTrainingDto.averageSpeed());
         }
+
+        return existingTraining;
     }
 }

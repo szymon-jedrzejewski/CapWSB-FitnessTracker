@@ -8,7 +8,6 @@ import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import com.capgemini.wsb.fitnesstracker.training.api.dto.TrainingDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -22,12 +21,20 @@ import java.util.Optional;
 public class TrainingServiceImpl implements TrainingService {
     private final TrainingMapper trainingMapper;
     private final TrainingRepository trainingRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public Optional<Training> getTrainingById(final Long trainingId) {
         throw new UnsupportedOperationException("Not finished yet");
     }
+
+    @Override
+    public List<TrainingDto> getTrainingsByUserId(Long userId) {
+        return trainingRepository.findByUserId(userId)
+                .stream()
+                .map(trainingMapper::toTrainingDto)
+                .toList();
+    }
+
 
     @Override
     public List<TrainingDto> findAllTrainings() {
@@ -38,8 +45,11 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public List<Training> getTrainingsByUser(UserDto user) {
-        return trainingRepository.findByUser(user);
+    public List<TrainingDto> getTrainingsByUser(UserDto user) {
+        return trainingRepository.findByUser(user)
+                .stream()
+                .map(trainingMapper::toTrainingDto)
+                .toList();
     }
 
 

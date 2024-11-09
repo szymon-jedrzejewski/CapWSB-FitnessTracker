@@ -19,8 +19,6 @@ import java.util.List;
 public class TrainingController {
     private final UserService userService;
     private final TrainingServiceImpl trainingService;
-    private final TrainingMapper trainingMapper;
-    private final TrainingRepository trainingRepository;
 
     @GetMapping
     public ResponseEntity<List<TrainingDto>> getAllTrainings() {
@@ -28,25 +26,23 @@ public class TrainingController {
     }
 
     @GetMapping("/user")
-    public List<Training> getTrainingsByUser(@RequestParam Long userid) {
+    public ResponseEntity<List<TrainingDto>> getTrainingsByUser(@RequestParam Long userid) {
         UserDto user = userService.findUserById(userid);
-        return trainingService.getTrainingsByUser(user);
+        List<TrainingDto> trainings = trainingService.getTrainingsByUser(user);
+        return ResponseEntity.ok(trainings);
     }
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<TrainingDto>> getTrainingsByUserId(@PathVariable Long userId) {
-        UserDto user = userService.findUserById(userId);
-        List<TrainingDto> trainings = trainingService.getTrainingsByUser(user).stream()
-                .map(trainingMapper::toTrainingDto)
-                .toList();
+        List<TrainingDto> trainings = trainingService.getTrainingsByUserId(userId);
         return ResponseEntity.ok(trainings);
     }
 
+
     @GetMapping("/completed")
     public ResponseEntity<List<TrainingDto>> getCompletedTrainingsAfterDate(@RequestParam("date") String dateStr) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            Date date = dateFormat.parse(dateStr);
+            Date date = DateParserUtil.parseDate(dateStr);
             List<TrainingDto> completedTrainings = trainingService.findCompletedTrainingsAfterDate(date);
             return ResponseEntity.ok(completedTrainings);
         } catch (ParseException e) {

@@ -21,7 +21,7 @@ public interface TrainingProvider {
 
     List<TrainingDto> findAllTrainings();
 
-    List<Training> getTrainingsByUser(UserDto user);
+    List<TrainingDto> getTrainingsByUser(UserDto user);
 
     TrainingDto createTraining(NewTrainingDto newTrainingDto);
 
