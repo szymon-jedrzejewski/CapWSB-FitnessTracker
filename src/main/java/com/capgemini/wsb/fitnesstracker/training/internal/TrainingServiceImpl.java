@@ -91,4 +91,9 @@ public class TrainingServiceImpl implements TrainingService {
 
         return trainingMapper.toTrainingDto(updatedTraining);
     }
+
+    @Override
+    public User mapUserDtoToUser(UserDto userDto) {
+        return userMapper.mapUserDtoToUser(userDto);
+    }
 }

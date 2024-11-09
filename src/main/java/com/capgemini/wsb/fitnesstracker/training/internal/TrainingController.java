@@ -5,7 +5,6 @@ import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import com.capgemini.wsb.fitnesstracker.user.api.UserService;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.UserDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;

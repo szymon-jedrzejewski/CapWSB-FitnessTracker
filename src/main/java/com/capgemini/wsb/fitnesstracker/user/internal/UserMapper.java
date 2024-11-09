@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-class UserMapper {
+public class UserMapper {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -25,6 +25,15 @@ class UserMapper {
                 user.getBirthdate(),
                 user.getEmail(),
                 List.copyOf(user.getAuthorities()));
+    }
+
+    public User mapUserDtoToUser(UserDto userDto) {
+        return new User(userDto.firstName(),
+                userDto.lastName(),
+                userDto.birthdate(),
+                userDto.email(),
+                userDto.password(),
+                userDto.authorities());
     }
 
     User newUserDtoToEntity(NewUserDto user) {
@@ -38,7 +47,7 @@ class UserMapper {
     }
 
     UserBasicInfoDto toUserBasicInfoDto(User user) {
-        return new UserBasicInfoDto(user.getFirstName(), user.getLastName());
+        return new UserBasicInfoDto(user.getId(), user.getFirstName(), user.getLastName());
     }
 
     UserEmailAndIdDto toUserEmailAndIdDto(User user) {
