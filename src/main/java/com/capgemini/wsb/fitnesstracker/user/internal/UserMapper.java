@@ -18,7 +18,10 @@ public class UserMapper {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    UserDto toUserDto(User user) {
+    public UserDto toUserDto(User user) {
+        if (user == null){
+            return null;
+        }
         return new UserDto(user.getId(),
                 user.getFirstName(),
                 user.getLastName(),

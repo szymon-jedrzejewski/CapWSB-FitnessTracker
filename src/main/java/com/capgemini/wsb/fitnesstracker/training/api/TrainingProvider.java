@@ -18,15 +18,15 @@ public interface TrainingProvider {
      * @param trainingId id of the training to be searched
      * @return An {@link Optional} containing the located Training, or {@link Optional#empty()} if not found
      */
-    Optional<Training> findTrainingsById(Long trainingId);
+
+    Optional<Training> getTrainingsById(Long trainingId);
 
     List<TrainingDto> findAllTrainings();
 
-    List<Training> findTrainingsByUser(Long userId);
-    List<TrainingDto> getTrainingsByUser(UserDto user);
+    List<TrainingDto> findTrainingsByUser(UserDto user);
 
     TrainingDto createTraining(NewTrainingDto newTrainingDto);
 
     List<TrainingDto> findTrainingsByActivityType(ActivityType activityType);
-    User mapUserDtoToUser (UserDto userDto);
+    //User mapUserDtoToUser (UserDto userDto);
 }

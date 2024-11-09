@@ -1,11 +1,14 @@
 package com.capgemini.wsb.fitnesstracker.training.internal;
 import com.capgemini.wsb.fitnesstracker.training.api.TrainingNotFoundException;
+import com.capgemini.wsb.fitnesstracker.training.api.TrainingProvider;
 import com.capgemini.wsb.fitnesstracker.training.api.TrainingService;
 import com.capgemini.wsb.fitnesstracker.training.api.dto.NewTrainingDto;
 import com.capgemini.wsb.fitnesstracker.training.api.dto.UpdateTrainingDto;
+import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.*;
 import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import com.capgemini.wsb.fitnesstracker.training.api.dto.TrainingDto;
+import com.capgemini.wsb.fitnesstracker.user.internal.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,9 +24,10 @@ import java.util.Optional;
 public class TrainingServiceImpl implements TrainingService {
     private final TrainingMapper trainingMapper;
     private final TrainingRepository trainingRepository;
+    private final UserMapper userMapper;
 
     @Override
-    public Optional<Training> getTrainingById(final Long trainingId) {
+    public Optional<Training> getTrainingsById(final Long trainingId) {
         throw new UnsupportedOperationException("Not finished yet");
     }
 
@@ -45,7 +49,7 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public List<TrainingDto> getTrainingsByUser(UserDto user) {
+    public List<TrainingDto> findTrainingsByUser(UserDto user) {
         return trainingRepository.findByUser(user)
                 .stream()
                 .map(trainingMapper::toTrainingDto)
@@ -61,12 +65,13 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public List<TrainingDto> getTrainingsByActivityType(ActivityType activityType) {
+    public List<TrainingDto> findTrainingsByActivityType(ActivityType activityType) {
         return trainingRepository.findByActivityType(activityType)
                 .stream()
                 .map(trainingMapper::toTrainingDto)
                 .toList();
     }
+
 
     public List<TrainingDto> findCompletedTrainingsAfterDate(Date date) {
         return trainingRepository.findAllByEndTimeAfter(date)
@@ -92,8 +97,4 @@ public class TrainingServiceImpl implements TrainingService {
         return trainingMapper.toTrainingDto(updatedTraining);
     }
 
-    @Override
-    public User mapUserDtoToUser(UserDto userDto) {
-        return userMapper.mapUserDtoToUser(userDto);
-    }
 }

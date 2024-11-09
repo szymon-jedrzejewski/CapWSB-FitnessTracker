@@ -1,14 +1,13 @@
 package com.capgemini.wsb.fitnesstracker.training.internal;
 
 import com.capgemini.wsb.fitnesstracker.training.api.dto.*;
-import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import com.capgemini.wsb.fitnesstracker.user.api.UserService;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.UserDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -20,14 +19,14 @@ public class TrainingController {
     private final TrainingServiceImpl trainingService;
 
     @GetMapping
-    public ResponseEntity<List<TrainingDto>> getAllTrainings() {
+    public ResponseEntity<List<TrainingDto>> findAllTrainings() {
         return ResponseEntity.ok(trainingService.findAllTrainings());
     }
 
     @GetMapping("/user")
     public ResponseEntity<List<TrainingDto>> getTrainingsByUser(@RequestParam Long userid) {
         UserDto user = userService.findUserById(userid);
-        List<TrainingDto> trainings = trainingService.getTrainingsByUser(user);
+        List<TrainingDto> trainings = trainingService.findTrainingsByUser(user);
         return ResponseEntity.ok(trainings);
     }
 
@@ -38,8 +37,8 @@ public class TrainingController {
     }
 
 
-    @GetMapping("/completed")
-    public ResponseEntity<List<TrainingDto>> getCompletedTrainingsAfterDate(@RequestParam("date") String dateStr) {
+    @GetMapping("/finished/{date}")
+    public ResponseEntity<List<TrainingDto>> getCompletedTrainingsAfterDate(@PathVariable("date") String dateStr) {
         try {
             Date date = DateParserUtil.parseDate(dateStr);
             List<TrainingDto> completedTrainings = trainingService.findCompletedTrainingsAfterDate(date);
@@ -50,9 +49,9 @@ public class TrainingController {
 
     }
 
-    @GetMapping("/activity")
-    public List<TrainingDto> getTrainingsByActivityType(@RequestParam ActivityType activityType) {
-        return trainingService.getTrainingsByActivityType(activityType);
+    @PutMapping("/activity")
+    public ResponseEntity <List<TrainingDto>> findTrainingsByActivityType(@RequestParam ActivityType activityType) {
+        return ResponseEntity.ok(trainingService.findTrainingsByActivityType(activityType));
     }
 
     @PostMapping
