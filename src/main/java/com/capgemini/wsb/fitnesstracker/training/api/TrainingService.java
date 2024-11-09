@@ -3,6 +3,9 @@ package com.capgemini.wsb.fitnesstracker.training.api;
 
 import com.capgemini.wsb.fitnesstracker.training.api.dto.NewTrainingDto;
 import com.capgemini.wsb.fitnesstracker.training.api.dto.TrainingDto;
+import com.capgemini.wsb.fitnesstracker.training.api.dto.UpdateTrainingDto;
+
+import java.util.List;
 
 /**
  * Interface (API) for modifying operations on {@link Training} entities through the API.
@@ -11,6 +14,7 @@ import com.capgemini.wsb.fitnesstracker.training.api.dto.TrainingDto;
 public interface TrainingService extends TrainingProvider {
 
     void deleteTrainingById(Long trainingId);
-    TrainingDto createTraining(NewTrainingDto training);
-    Training updateTraining(Long id, Training trainingDto);
+    TrainingDto createTraining(NewTrainingDto newTrainingDto);
+    TrainingDto updateTraining(Long id, UpdateTrainingDto updateTrainingDto);
+    List<TrainingDto> getTrainingsByUserId(Long userId);
 }

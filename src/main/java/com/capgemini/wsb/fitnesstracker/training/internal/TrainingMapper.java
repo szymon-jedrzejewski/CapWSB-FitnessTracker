@@ -41,4 +41,27 @@ public class TrainingMapper {
 
         );
     }
+
+    Training updateTrainingDtoToEntity(UpdateTrainingDto updateTrainingDto, Training existingTraining) {
+        if (updateTrainingDto.user() != null) {
+            existingTraining.setUser(updateTrainingDto.user());
+        }
+        if (updateTrainingDto.startTime() != null) {
+            existingTraining.setStartTime(updateTrainingDto.startTime());
+        }
+        if (updateTrainingDto.endTime() != null) {
+            existingTraining.setEndTime(updateTrainingDto.endTime());
+        }
+        if (updateTrainingDto.activityType() != null) {
+            existingTraining.setActivityType(updateTrainingDto.activityType());
+        }
+        if (updateTrainingDto.distance() != null) {
+            existingTraining.setDistance(updateTrainingDto.distance());
+        }
+        if (updateTrainingDto.averageSpeed() != null) {
+            existingTraining.setAverageSpeed(updateTrainingDto.averageSpeed());
+        }
+
+        return existingTraining;
+    }
 }
