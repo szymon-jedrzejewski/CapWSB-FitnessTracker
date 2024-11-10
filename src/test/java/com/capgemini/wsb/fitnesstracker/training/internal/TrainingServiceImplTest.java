@@ -13,13 +13,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -44,7 +41,7 @@ class TrainingServiceImplTest {
     @BeforeEach
     void setUp() {
         String uniqueEmail = "tester" + System.currentTimeMillis() + "@example.com";
-        NewUserDto newUser = new NewUserDto("Alex", "Dunphy", LocalDate.of(1999,01,04),uniqueEmail, "password", List.of("ADMIN"));
+        NewUserDto newUser = new NewUserDto("Alex", "Dunphy", LocalDate.of(1999,1,4),uniqueEmail, "password", List.of("ADMIN"));
 
 
         testUser = userService.createUser(newUser);
@@ -66,7 +63,7 @@ class TrainingServiceImplTest {
         assertNotNull(trainings);
         assertFalse(trainings.isEmpty());
         assertEquals(1, trainings.size());
-        assertEquals(testUser.id(), trainings.get(0).user().id());
+        assertEquals(testUser.id(), trainings.get(0).getUser().id());
     }
 
     @Test
@@ -88,10 +85,10 @@ class TrainingServiceImplTest {
         TrainingDto createdTraining = trainingService.createTraining(newTraining);
 
         assertNotNull(createdTraining);
-        assertEquals(newTraining.userId(), createdTraining.user().id());
-        assertEquals(newTraining.activityType(), createdTraining.activityType());
-        assertEquals(newTraining.distance(), createdTraining.distance());
-        assertEquals(newTraining.averageSpeed(), createdTraining.averageSpeed());
+        assertEquals(newTraining.getUserId(), createdTraining.getUser().id());
+        assertEquals(newTraining.getActivityType(), createdTraining.getActivityType());
+        assertEquals(newTraining.getDistance(), createdTraining.getDistance());
+        assertEquals(newTraining.getAverageSpeed(), createdTraining.getAverageSpeed());
     }
 
     @Test
@@ -102,7 +99,7 @@ class TrainingServiceImplTest {
         List<TrainingDto> trainings = trainingService.findTrainingsByActivityType(ActivityType.WALKING);
         assertNotNull(trainings);
         assertFalse(trainings.isEmpty());
-        assertEquals(ActivityType.WALKING, trainings.get(0).activityType());
+        assertEquals(ActivityType.WALKING, trainings.get(0).getActivityType());
     }
 
     @Test
@@ -117,7 +114,7 @@ class TrainingServiceImplTest {
         List<TrainingDto> trainings = trainingService.findCompletedTrainingsAfterDate("2024-11-05");
         assertNotNull(trainings);
         assertFalse(trainings.isEmpty());
-        assertTrue(trainings.get(0).endTime().after(dateFormat.parse("2024-11-05")));
+        assertTrue(trainings.get(0).getEndTime().after(dateFormat.parse("2024-11-05")));
     }
 
     @Test
@@ -126,20 +123,20 @@ class TrainingServiceImplTest {
         TrainingDto createdTraining = trainingService.createTraining(newTraining);
 
         UpdateTrainingDto updateTrainingDto = new UpdateTrainingDto(
-                createdTraining.id(),
-                createdTraining.user(),
-                createdTraining.startTime(),
-                createdTraining.endTime(),
+                createdTraining.getId(),
+                createdTraining.getUser(),
+                createdTraining.getStartTime(),
+                createdTraining.getEndTime(),
                 ActivityType.CYCLING,
                 6.0,
                 14.0
         );
 
-        TrainingDto updatedTraining = trainingService.updateTraining(createdTraining.id(), updateTrainingDto);
+        TrainingDto updatedTraining = trainingService.updateTraining(createdTraining.getId(), updateTrainingDto);
 
         assertNotNull(updatedTraining);
-        assertEquals(ActivityType.CYCLING, updatedTraining.activityType());
-        assertEquals(6.0, updatedTraining.distance());
-        assertEquals(14.0, updatedTraining.averageSpeed());
+        assertEquals(ActivityType.CYCLING, updatedTraining.getActivityType());
+        assertEquals(6.0, updatedTraining.getDistance());
+        assertEquals(14.0, updatedTraining.getAverageSpeed());
     }
 }

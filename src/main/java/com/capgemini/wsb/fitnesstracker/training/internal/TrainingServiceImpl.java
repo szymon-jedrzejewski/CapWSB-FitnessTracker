@@ -22,7 +22,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class TrainingServiceImpl implements TrainingService {
+class TrainingServiceImpl implements TrainingService {
     private final TrainingMapper trainingMapper;
     private final UserMapper userMapper;
     private final TrainingRepository trainingRepository;
@@ -48,7 +48,7 @@ public class TrainingServiceImpl implements TrainingService {
     @Transactional
     @Override
     public TrainingDto createTraining(NewTrainingDto newTrainingDto) {
-        User user = userService.findUserByIdForTraining(newTrainingDto.userId());
+        User user = userService.findUserByIdForTraining(newTrainingDto.getUserId());
         Training training = trainingMapper.newTrainingDtoToEntity(newTrainingDto, user);
 
         return trainingMapper.toTrainingDto(trainingRepository.save(training), userMapper.toUserDto(training.getUser()));

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class TrainingMapper {
+class TrainingMapper {
     TrainingDto toTrainingDto(Training training, UserDto user) {
         return new TrainingDto(
                 training.getId(),
@@ -28,31 +28,31 @@ public class TrainingMapper {
     Training newTrainingDtoToEntity(NewTrainingDto newTrainingDto, User user) {
         return new Training(
                 user,
-                newTrainingDto.startTime(),
-                newTrainingDto.endTime(),
-                newTrainingDto.activityType(),
-                newTrainingDto.distance(),
-                newTrainingDto.averageSpeed()
+                newTrainingDto.getStartTime(),
+                newTrainingDto.getEndTime(),
+                newTrainingDto.getActivityType(),
+                newTrainingDto.getDistance(),
+                newTrainingDto.getAverageSpeed()
 
         );
     }
 
     void updateTrainingDtoToEntity(UpdateTrainingDto updateTrainingDto, Training existingTraining) {
 
-        if (updateTrainingDto.startTime() != null) {
-            existingTraining.setStartTime(updateTrainingDto.startTime());
+        if (updateTrainingDto.getStartTime() != null) {
+            existingTraining.setStartTime(updateTrainingDto.getStartTime());
         }
-        if (updateTrainingDto.endTime() != null) {
-            existingTraining.setEndTime(updateTrainingDto.endTime());
+        if (updateTrainingDto.getEndTime() != null) {
+            existingTraining.setEndTime(updateTrainingDto.getEndTime());
         }
-        if (updateTrainingDto.activityType() != null) {
-            existingTraining.setActivityType(updateTrainingDto.activityType());
+        if (updateTrainingDto.getActivityType() != null) {
+            existingTraining.setActivityType(updateTrainingDto.getActivityType());
         }
-        if (updateTrainingDto.distance() != null) {
-            existingTraining.setDistance(updateTrainingDto.distance());
+        if (updateTrainingDto.getDistance() != null) {
+            existingTraining.setDistance(updateTrainingDto.getDistance());
         }
-        if (updateTrainingDto.averageSpeed() != null) {
-            existingTraining.setAverageSpeed(updateTrainingDto.averageSpeed());
+        if (updateTrainingDto.getAverageSpeed() != null) {
+            existingTraining.setAverageSpeed(updateTrainingDto.getAverageSpeed());
         }
     }
 }
