@@ -37,7 +37,7 @@ public class TrainingMapper {
         );
     }
 
-    Training updateTrainingDtoToEntity(UpdateTrainingDto updateTrainingDto, Training existingTraining) {
+    void updateTrainingDtoToEntity(UpdateTrainingDto updateTrainingDto, Training existingTraining) {
 
         if (updateTrainingDto.startTime() != null) {
             existingTraining.setStartTime(updateTrainingDto.startTime());
@@ -54,7 +54,5 @@ public class TrainingMapper {
         if (updateTrainingDto.averageSpeed() != null) {
             existingTraining.setAverageSpeed(updateTrainingDto.averageSpeed());
         }
-
-        return existingTraining;
     }
 }

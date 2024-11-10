@@ -10,15 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 interface TrainingRepository extends JpaRepository<Training, Long> {
-    Optional<Training> getTrainingById(Long trainingId);
-
-    List<Training> findByStartTimeAfter(LocalDate date);
 
     List<Training> findByActivityType(ActivityType activityType);
-
-    List<Training> findByUser(UserDto user);
-
-    List<Training> findAllByEndTimeAfter(Date date);
 
     List<Training> findByUserId(Long userId);
 

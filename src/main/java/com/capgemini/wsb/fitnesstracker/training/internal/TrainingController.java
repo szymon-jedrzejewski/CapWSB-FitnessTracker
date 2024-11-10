@@ -15,7 +15,6 @@ import java.util.List;
 @RequestMapping("/v1/trainings")
 @RequiredArgsConstructor
 public class TrainingController {
-    private final UserService userService;
     private final TrainingServiceImpl trainingService;
 
     @GetMapping
