@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ab35f367-61f1-4915-a1b9-3b75b440347b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/capgemini/wsb/fitnesstracker/training/internal/TrainingServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/capgemini/wsb/fitnesstracker/training/internal/TrainingServiceImplTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="prokopiuk_branch" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2ocoHruOoOjdyXjGsqmIKm9ZLhl" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "JUnit.TrainingApiIntegrationTest.executor": "Run",
+    "JUnit.TrainingApiIntegrationTest.shouldPersistTraining_whenCreatingNewTraining.executor": "Run",
+    "JUnit.TrainingApiIntegrationTest.shouldReturnAllFinishedTrainingsAfterTime_whenGettingAllFinishedTrainingsAfterTime.executor": "Run",
+    "JUnit.TrainingApiIntegrationTest.shouldReturnAllTrainingsForDedicatedUser_whenGettingAllTrainingsForDedicatedUser.executor": "Run",
+    "JUnit.TrainingApiIntegrationTest.shouldReturnAllTrainings_whenGettingAllTrainings.executor": "Run",
+    "JUnit.TrainingApiIntegrationTest.shouldUpdateTraining_whenUpdatingTraining.executor": "Run",
+    "JUnit.TrainingServiceImplTest.createTraining.executor": "Run",
+    "JUnit.TrainingServiceImplTest.executor": "Run",
+    "JUnit.TrainingServiceImplTest.findAllTrainings.executor": "Run",
+    "JUnit.TrainingServiceImplTest.findCompletedTrainingsAfterDate.executor": "Run",
+    "JUnit.TrainingServiceImplTest.findTrainingsByActivityType.executor": "Run",
+    "JUnit.TrainingServiceImplTest.findTrainingsByUserId.executor": "Run",
+    "JUnit.TrainingServiceImplTest.updateTraining.executor": "Run",
+    "JUnit.UserApiIntegrationTest.executor": "Run",
+    "JUnit.UserApiIntegrationTest.shouldReturnAllUsers_whenGettingAllUsers.executor": "Run",
+    "JUnit.UserServiceImplTest.executor": "Run",
+    "JUnit.UserServiceImplTest.setUp.executor": "Run",
+    "JUnit.UserServiceImplTest.testFindAllUsers.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.FitnessTracker.executor": "Run",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/troch/CapWSB-FitnessTracker",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="JUnit.TrainingServiceImplTest">
+    <configuration name="TrainingServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CapWSB-FitnessTracker" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.capgemini.wsb.fitnesstracker.training.internal.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.capgemini.wsb.fitnesstracker.training.internal" />
+      <option name="MAIN_CLASS_NAME" value="com.capgemini.wsb.fitnesstracker.training.internal.TrainingServiceImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TrainingServiceImplTest.createTraining" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CapWSB-FitnessTracker" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.capgemini.wsb.fitnesstracker.training.internal.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.capgemini.wsb.fitnesstracker.training.internal" />
+      <option name="MAIN_CLASS_NAME" value="com.capgemini.wsb.fitnesstracker.training.internal.TrainingServiceImplTest" />
+      <option name="METHOD_NAME" value="createTraining" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TrainingServiceImplTest.findCompletedTrainingsAfterDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CapWSB-FitnessTracker" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.capgemini.wsb.fitnesstracker.training.internal.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.capgemini.wsb.fitnesstracker.training.internal" />
+      <option name="MAIN_CLASS_NAME" value="com.capgemini.wsb.fitnesstracker.training.internal.TrainingServiceImplTest" />
+      <option name="METHOD_NAME" value="findCompletedTrainingsAfterDate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TrainingServiceImplTest.findTrainingsByActivityType" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CapWSB-FitnessTracker" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.capgemini.wsb.fitnesstracker.training.internal.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.capgemini.wsb.fitnesstracker.training.internal" />
+      <option name="MAIN_CLASS_NAME" value="com.capgemini.wsb.fitnesstracker.training.internal.TrainingServiceImplTest" />
+      <option name="METHOD_NAME" value="findTrainingsByActivityType" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TrainingServiceImplTest.updateTraining" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CapWSB-FitnessTracker" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.capgemini.wsb.fitnesstracker.training.internal.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.capgemini.wsb.fitnesstracker.training.internal" />
+      <option name="MAIN_CLASS_NAME" value="com.capgemini.wsb.fitnesstracker.training.internal.TrainingServiceImplTest" />
+      <option name="METHOD_NAME" value="updateTraining" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FitnessTracker" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="CapWSB-FitnessTracker" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.capgemini.wsb.FitnessTracker" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TrainingServiceImplTest" />
+        <item itemvalue="JUnit.TrainingServiceImplTest.updateTraining" />
+        <item itemvalue="JUnit.TrainingServiceImplTest.findCompletedTrainingsAfterDate" />
+        <item itemvalue="JUnit.TrainingServiceImplTest.findTrainingsByActivityType" />
+        <item itemvalue="JUnit.TrainingServiceImplTest.createTraining" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-22-openjdk-22-3183f394aec4-bad0321e" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ab35f367-61f1-4915-a1b9-3b75b440347b" name="Changes" comment="" />
+      <created>1731178139776</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731178139776</updated>
+      <workItem from="1731178140845" duration="2428000" />
+      <workItem from="1731180581263" duration="13316000" />
+      <workItem from="1731251859282" duration="348000" />
+      <workItem from="1731252241103" duration="4517000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
