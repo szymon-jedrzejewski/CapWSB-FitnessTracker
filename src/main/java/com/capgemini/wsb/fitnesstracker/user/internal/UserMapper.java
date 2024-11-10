@@ -18,7 +18,7 @@ public class UserMapper {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    UserDto toUserDto(User user) {
+    public UserDto toUserDto(User user) {
         return new UserDto(user.getId(),
                 user.getFirstName(),
                 user.getLastName(),
@@ -28,12 +28,14 @@ public class UserMapper {
     }
 
     public User mapUserDtoToUser(UserDto userDto) {
-        return new User(userDto.firstName(),
+        User user = new User(userDto.firstName(),
                 userDto.lastName(),
                 userDto.birthdate(),
                 userDto.email(),
                 userDto.password(),
                 userDto.authorities());
+        user.setId(user.getId());
+        return user;
     }
 
     User newUserDtoToEntity(NewUserDto user) {

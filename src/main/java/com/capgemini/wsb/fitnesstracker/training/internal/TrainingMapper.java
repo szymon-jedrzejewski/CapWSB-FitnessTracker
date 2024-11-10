@@ -1,23 +1,21 @@
 package com.capgemini.wsb.fitnesstracker.training.internal;
+
 import com.capgemini.wsb.fitnesstracker.training.api.Training;
-
-import com.capgemini.wsb.fitnesstracker.user.api.dto.UserDto;
-
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Component;
-import com.capgemini.wsb.fitnesstracker.training.api.dto.*;
+import com.capgemini.wsb.fitnesstracker.training.api.dto.NewTrainingDto;
+import com.capgemini.wsb.fitnesstracker.training.api.dto.TrainingDto;
+import com.capgemini.wsb.fitnesstracker.training.api.dto.UpdateTrainingDto;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
+import com.capgemini.wsb.fitnesstracker.user.api.dto.UserDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
 public class TrainingMapper {
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final TrainingServiceImpl trainingServiceImpl;
-
-    TrainingDto toTrainingDto(Training training) {
+    TrainingDto toTrainingDto(Training training, UserDto user) {
         return new TrainingDto(
                 training.getId(),
+                user,
                 training.getStartTime(),
                 training.getEndTime(),
                 training.getActivityType(),
@@ -27,10 +25,7 @@ public class TrainingMapper {
         );
     }
 
-    Training newTrainingDtoToEntity(NewTrainingDto newTrainingDto, UserDto userDto) {
-
-        User user = trainingServiceImpl.mapUserDtoToUser(userDto);
-
+    Training newTrainingDtoToEntity(NewTrainingDto newTrainingDto, User user) {
         return new Training(
                 user,
                 newTrainingDto.startTime(),
@@ -43,9 +38,7 @@ public class TrainingMapper {
     }
 
     Training updateTrainingDtoToEntity(UpdateTrainingDto updateTrainingDto, Training existingTraining) {
-        if (updateTrainingDto.user() != null) {
-            existingTraining.setUser(updateTrainingDto.user());
-        }
+
         if (updateTrainingDto.startTime() != null) {
             existingTraining.setStartTime(updateTrainingDto.startTime());
         }

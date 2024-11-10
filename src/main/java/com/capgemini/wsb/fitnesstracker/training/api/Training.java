@@ -3,13 +3,8 @@ package com.capgemini.wsb.fitnesstracker.training.api;
 import com.capgemini.wsb.fitnesstracker.training.internal.ActivityType;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import java.util.Date;
 
@@ -26,7 +21,7 @@ public class Training {
     private Long id;
 
     @ManyToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
     private User user;
 
