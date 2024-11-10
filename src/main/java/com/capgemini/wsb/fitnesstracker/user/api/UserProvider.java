@@ -49,4 +49,6 @@ public interface UserProvider extends UserDetailsService {
      * @return An {@link Optional} containing the located user, or {@link Optional#empty()} if not found
      */
     UserDto findUserById(Long userId);
+
+    User findUserByIdForTraining(final Long userId);
 }

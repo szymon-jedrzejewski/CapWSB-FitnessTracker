@@ -53,6 +53,10 @@ class UserServiceImpl implements UserService {
         return userMapper.toUserDto(userRepository.findById(userId).orElseThrow());
     }
 
+    public User findUserByIdForTraining(final Long userId) {
+        return userRepository.findById(userId).orElseThrow();
+    }
+
     @Override
     public List<UserDto> findAllUsersOlderThan(LocalDate time) {
         return userRepository.findAll()

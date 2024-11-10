@@ -6,6 +6,7 @@ import com.capgemini.wsb.fitnesstracker.training.api.TrainingService;
 import com.capgemini.wsb.fitnesstracker.training.api.dto.NewTrainingDto;
 import com.capgemini.wsb.fitnesstracker.training.api.dto.TrainingDto;
 import com.capgemini.wsb.fitnesstracker.training.api.dto.UpdateTrainingDto;
+import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.capgemini.wsb.fitnesstracker.user.api.UserService;
 import com.capgemini.wsb.fitnesstracker.user.api.dto.UserDto;
 import com.capgemini.wsb.fitnesstracker.user.internal.UserMapper;
@@ -13,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -43,10 +45,11 @@ public class TrainingServiceImpl implements TrainingService {
                 .toList();
     }
 
+    @Transactional
     @Override
     public TrainingDto createTraining(NewTrainingDto newTrainingDto) {
-        UserDto user = userService.findUserById(newTrainingDto.userId());
-        Training training = trainingMapper.newTrainingDtoToEntity(newTrainingDto, userMapper.mapUserDtoToUser(user));
+        User user = userService.findUserByIdForTraining(newTrainingDto.userId());
+        Training training = trainingMapper.newTrainingDtoToEntity(newTrainingDto, user);
 
         return trainingMapper.toTrainingDto(trainingRepository.save(training), userMapper.toUserDto(training.getUser()));
     }

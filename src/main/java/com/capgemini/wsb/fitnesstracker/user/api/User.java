@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 @Table(name = "users")
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString
 public class User implements UserDetails {
 
     @Id
@@ -45,6 +44,15 @@ public class User implements UserDetails {
 
     @Column(nullable = false)
     private String authorities;
+
+    public User(Long id, String firstName, String lastName, LocalDate birthdate, String email, String password, String authorities) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthdate = birthdate;
+        this.email = email;
+        this.password = password;
+        this.authorities = authorities;
+    }
 
     public User(String firstName, String lastName, LocalDate birthdate, String email, String password, String authorities) {
         this.firstName = firstName;

@@ -27,17 +27,6 @@ public class UserMapper {
                 List.copyOf(user.getAuthorities()));
     }
 
-    public User mapUserDtoToUser(UserDto userDto) {
-        User user = new User(userDto.firstName(),
-                userDto.lastName(),
-                userDto.birthdate(),
-                userDto.email(),
-                userDto.password(),
-                userDto.authorities());
-        user.setId(user.getId());
-        return user;
-    }
-
     User newUserDtoToEntity(NewUserDto user) {
         return new User(
                 user.firstName(),
@@ -55,6 +44,4 @@ public class UserMapper {
     UserEmailAndIdDto toUserEmailAndIdDto(User user) {
         return new UserEmailAndIdDto(user.getId(), user.getEmail());
     }
-
-
 }
