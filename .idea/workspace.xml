@@ -5,17 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab35f367-61f1-4915-a1b9-3b75b440347b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/capgemini/wsb/fitnesstracker/training/internal/TrainingServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/capgemini/wsb/fitnesstracker/training/internal/TrainingServiceImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/731e3d7b-9872-46b7-a43f-aa0f39db2ac3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/731e3d7b-9872-46b7-a43f-aa0f39db2ac3/storage_v2/_src_/database/TESTDB.kGhKkw.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/731e3d7b-9872-46b7-a43f-aa0f39db2ac3/storage_v2/_src_/database/TESTDB.kGhKkw/schema/INFORMATION_SCHEMA.NBgcMw.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/731e3d7b-9872-46b7-a43f-aa0f39db2ac3/storage_v2/_src_/database/TESTDB.kGhKkw/schema/PUBLIC.aaZQjQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/capgemini/wsb/fitnesstracker/mail/EmailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/capgemini/wsb/fitnesstracker/training/MonthlyTrainingSummaryScheduler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/capgemini/wsb/fitnesstracker/training/TrainingReportService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/capgemini/wsb/fitnesstracker/training/EmailServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capgemini/wsb/fitnesstracker/mail/internal/MailConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/capgemini/wsb/fitnesstracker/mail/internal/MailConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capgemini/wsb/fitnesstracker/training/internal/TrainingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/capgemini/wsb/fitnesstracker/training/internal/TrainingRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="prokopiuk_branch" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,6 +63,11 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "JUnit.EmailServiceTest.executor": "Run",
+    "JUnit.EmailServiceTest.sendEmail_shouldSendEmailSuccessfully.executor": "Run",
+    "JUnit.EmailServiceTest.shouldSendEmailSuccessfully.executor": "Run",
+    "JUnit.EmailServiceTest.shouldSendRealEmail.executor": "Run",
+    "JUnit.EmailServiceTest.shouldThrowRuntimeExceptionWhenMessagingExceptionOccurs.executor": "Run",
     "JUnit.TrainingApiIntegrationTest.executor": "Run",
     "JUnit.TrainingApiIntegrationTest.shouldPersistTraining_whenCreatingNewTraining.executor": "Run",
     "JUnit.TrainingApiIntegrationTest.shouldReturnAllFinishedTrainingsAfterTime_whenGettingAllFinishedTrainingsAfterTime.executor": "Run",
@@ -64,6 +92,7 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.FitnessTracker.executor": "Run",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
@@ -73,14 +102,82 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.TrainingServiceImplTest">
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.capgemini.wsb.fitnesstracker.training" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.EmailServiceTest">
+    <configuration name="EmailServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CapWSB-FitnessTracker" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.capgemini.wsb.fitnesstracker.mail.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.capgemini.wsb.fitnesstracker.training" />
+      <option name="MAIN_CLASS_NAME" value="com.capgemini.wsb.fitnesstracker.training.EmailServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EmailServiceTest.shouldSendEmailSuccessfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CapWSB-FitnessTracker" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.capgemini.wsb.fitnesstracker.mail.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.capgemini.wsb.fitnesstracker.training" />
+      <option name="MAIN_CLASS_NAME" value="com.capgemini.wsb.fitnesstracker.training.EmailServiceTest" />
+      <option name="METHOD_NAME" value="shouldSendEmailSuccessfully" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EmailServiceTest.shouldSendRealEmail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CapWSB-FitnessTracker" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.capgemini.wsb.fitnesstracker.mail.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.capgemini.wsb.fitnesstracker.training" />
+      <option name="MAIN_CLASS_NAME" value="com.capgemini.wsb.fitnesstracker.training.EmailServiceTest" />
+      <option name="METHOD_NAME" value="shouldSendRealEmail" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EmailServiceTest.shouldThrowRuntimeExceptionWhenMessagingExceptionOccurs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CapWSB-FitnessTracker" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.capgemini.wsb.fitnesstracker.mail.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.capgemini.wsb.fitnesstracker.training" />
+      <option name="MAIN_CLASS_NAME" value="com.capgemini.wsb.fitnesstracker.training.EmailServiceTest" />
+      <option name="METHOD_NAME" value="shouldThrowRuntimeExceptionWhenMessagingExceptionOccurs" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TrainingServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CapWSB-FitnessTracker" />
       <extension name="coverage">
@@ -96,70 +193,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TrainingServiceImplTest.createTraining" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CapWSB-FitnessTracker" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.capgemini.wsb.fitnesstracker.training.internal.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.capgemini.wsb.fitnesstracker.training.internal" />
-      <option name="MAIN_CLASS_NAME" value="com.capgemini.wsb.fitnesstracker.training.internal.TrainingServiceImplTest" />
-      <option name="METHOD_NAME" value="createTraining" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TrainingServiceImplTest.findCompletedTrainingsAfterDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CapWSB-FitnessTracker" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.capgemini.wsb.fitnesstracker.training.internal.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.capgemini.wsb.fitnesstracker.training.internal" />
-      <option name="MAIN_CLASS_NAME" value="com.capgemini.wsb.fitnesstracker.training.internal.TrainingServiceImplTest" />
-      <option name="METHOD_NAME" value="findCompletedTrainingsAfterDate" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TrainingServiceImplTest.findTrainingsByActivityType" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CapWSB-FitnessTracker" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.capgemini.wsb.fitnesstracker.training.internal.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.capgemini.wsb.fitnesstracker.training.internal" />
-      <option name="MAIN_CLASS_NAME" value="com.capgemini.wsb.fitnesstracker.training.internal.TrainingServiceImplTest" />
-      <option name="METHOD_NAME" value="findTrainingsByActivityType" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TrainingServiceImplTest.updateTraining" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CapWSB-FitnessTracker" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.capgemini.wsb.fitnesstracker.training.internal.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.capgemini.wsb.fitnesstracker.training.internal" />
-      <option name="MAIN_CLASS_NAME" value="com.capgemini.wsb.fitnesstracker.training.internal.TrainingServiceImplTest" />
-      <option name="METHOD_NAME" value="updateTraining" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="FitnessTracker" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="CapWSB-FitnessTracker" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.capgemini.wsb.FitnessTracker" />
@@ -169,11 +202,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.EmailServiceTest" />
         <item itemvalue="JUnit.TrainingServiceImplTest" />
-        <item itemvalue="JUnit.TrainingServiceImplTest.updateTraining" />
-        <item itemvalue="JUnit.TrainingServiceImplTest.findCompletedTrainingsAfterDate" />
-        <item itemvalue="JUnit.TrainingServiceImplTest.findTrainingsByActivityType" />
-        <item itemvalue="JUnit.TrainingServiceImplTest.createTraining" />
+        <item itemvalue="JUnit.EmailServiceTest.shouldSendEmailSuccessfully" />
+        <item itemvalue="JUnit.EmailServiceTest.shouldThrowRuntimeExceptionWhenMessagingExceptionOccurs" />
+        <item itemvalue="JUnit.EmailServiceTest.shouldSendRealEmail" />
       </list>
     </recent_temporary>
   </component>
@@ -196,6 +229,7 @@
       <workItem from="1731180581263" duration="13316000" />
       <workItem from="1731251859282" duration="348000" />
       <workItem from="1731252241103" duration="4517000" />
+      <workItem from="1731874775738" duration="425000" />
     </task>
     <servers />
   </component>
