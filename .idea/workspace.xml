@@ -5,23 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab35f367-61f1-4915-a1b9-3b75b440347b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/731e3d7b-9872-46b7-a43f-aa0f39db2ac3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/731e3d7b-9872-46b7-a43f-aa0f39db2ac3/storage_v2/_src_/database/TESTDB.kGhKkw.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/731e3d7b-9872-46b7-a43f-aa0f39db2ac3/storage_v2/_src_/database/TESTDB.kGhKkw/schema/INFORMATION_SCHEMA.NBgcMw.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/731e3d7b-9872-46b7-a43f-aa0f39db2ac3/storage_v2/_src_/database/TESTDB.kGhKkw/schema/PUBLIC.aaZQjQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/capgemini/wsb/fitnesstracker/mail/EmailService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/capgemini/wsb/fitnesstracker/training/MonthlyTrainingSummaryScheduler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/capgemini/wsb/fitnesstracker/training/TrainingReportService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/capgemini/wsb/fitnesstracker/training/EmailServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/capgemini/wsb/fitnesstracker/mail/internal/MailConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/capgemini/wsb/fitnesstracker/mail/internal/MailConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/capgemini/wsb/fitnesstracker/training/internal/TrainingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/capgemini/wsb/fitnesstracker/training/internal/TrainingRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/capgemini/wsb/fitnesstracker/training/EmailServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/capgemini/wsb/fitnesstracker/training/EmailServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,55 +45,55 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "JUnit.EmailServiceTest.executor": "Run",
-    "JUnit.EmailServiceTest.sendEmail_shouldSendEmailSuccessfully.executor": "Run",
-    "JUnit.EmailServiceTest.shouldSendEmailSuccessfully.executor": "Run",
-    "JUnit.EmailServiceTest.shouldSendRealEmail.executor": "Run",
-    "JUnit.EmailServiceTest.shouldThrowRuntimeExceptionWhenMessagingExceptionOccurs.executor": "Run",
-    "JUnit.TrainingApiIntegrationTest.executor": "Run",
-    "JUnit.TrainingApiIntegrationTest.shouldPersistTraining_whenCreatingNewTraining.executor": "Run",
-    "JUnit.TrainingApiIntegrationTest.shouldReturnAllFinishedTrainingsAfterTime_whenGettingAllFinishedTrainingsAfterTime.executor": "Run",
-    "JUnit.TrainingApiIntegrationTest.shouldReturnAllTrainingsForDedicatedUser_whenGettingAllTrainingsForDedicatedUser.executor": "Run",
-    "JUnit.TrainingApiIntegrationTest.shouldReturnAllTrainings_whenGettingAllTrainings.executor": "Run",
-    "JUnit.TrainingApiIntegrationTest.shouldUpdateTraining_whenUpdatingTraining.executor": "Run",
-    "JUnit.TrainingServiceImplTest.createTraining.executor": "Run",
-    "JUnit.TrainingServiceImplTest.executor": "Run",
-    "JUnit.TrainingServiceImplTest.findAllTrainings.executor": "Run",
-    "JUnit.TrainingServiceImplTest.findCompletedTrainingsAfterDate.executor": "Run",
-    "JUnit.TrainingServiceImplTest.findTrainingsByActivityType.executor": "Run",
-    "JUnit.TrainingServiceImplTest.findTrainingsByUserId.executor": "Run",
-    "JUnit.TrainingServiceImplTest.updateTraining.executor": "Run",
-    "JUnit.UserApiIntegrationTest.executor": "Run",
-    "JUnit.UserApiIntegrationTest.shouldReturnAllUsers_whenGettingAllUsers.executor": "Run",
-    "JUnit.UserServiceImplTest.executor": "Run",
-    "JUnit.UserServiceImplTest.setUp.executor": "Run",
-    "JUnit.UserServiceImplTest.testFindAllUsers.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.FitnessTracker.executor": "Run",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/troch/CapWSB-FitnessTracker",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;JUnit.EmailServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EmailServiceTest.sendEmail_shouldSendEmailSuccessfully.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EmailServiceTest.shouldSendEmailSuccessfully.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EmailServiceTest.shouldSendRealEmail.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EmailServiceTest.shouldThrowRuntimeExceptionWhenMessagingExceptionOccurs.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TrainingApiIntegrationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TrainingApiIntegrationTest.shouldPersistTraining_whenCreatingNewTraining.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TrainingApiIntegrationTest.shouldReturnAllFinishedTrainingsAfterTime_whenGettingAllFinishedTrainingsAfterTime.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TrainingApiIntegrationTest.shouldReturnAllTrainingsForDedicatedUser_whenGettingAllTrainingsForDedicatedUser.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TrainingApiIntegrationTest.shouldReturnAllTrainings_whenGettingAllTrainings.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TrainingApiIntegrationTest.shouldUpdateTraining_whenUpdatingTraining.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TrainingServiceImplTest.createTraining.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TrainingServiceImplTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TrainingServiceImplTest.findAllTrainings.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TrainingServiceImplTest.findCompletedTrainingsAfterDate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TrainingServiceImplTest.findTrainingsByActivityType.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TrainingServiceImplTest.findTrainingsByUserId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TrainingServiceImplTest.updateTraining.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserApiIntegrationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserApiIntegrationTest.shouldReturnAllUsers_whenGettingAllUsers.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceImplTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceImplTest.setUp.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceImplTest.testFindAllUsers.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.FitnessTracker.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/troch/CapWSB-FitnessTracker&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.capgemini.wsb.fitnesstracker.training" />

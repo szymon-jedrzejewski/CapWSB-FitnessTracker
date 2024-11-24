@@ -25,7 +25,7 @@ public class EmailServiceTest {
     @Test
     public void shouldSendEmailSuccessfully() {
 
-        String to = "example@example.com";
+        String to = "barbaramajetna@gmail.com";
         String subject = "Test Email";
         String text = "This is a test email sent from the EmailService test.";
 
